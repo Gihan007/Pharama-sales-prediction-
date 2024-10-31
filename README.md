@@ -34,5 +34,25 @@
 **Model Implementation**
 
 * Reason for use time series forecasting:
-  	
+  1.SARIMA handles seasonality
+  2.Captures trends and seasonality in sales
+  3.Provides reliable forecast for higher accuracy
 * We split entire dataset into Train and Test data.
+
+**Testing and Evaluation**
+
+*
+    Testing for C1*
+
+![1730392487570](image/README/1730392487570.png)
+
+*
+    Accuracy for each category*
+
+![1730392533836](image/README/1730392533836.png)
+
+* Augmented Dickey-Fuller (ADF) Test used to check if the sales data was stationary (required for time-series forecasting).ADF test showed non-stationary data (p-value > 0.05).
+* Applied differencing to make the data stationary.
+* Chosen for its ability to handle seasonal patterns in the sales data.
+* Compared predicted vs. actual test sale data, showing reliable and accurate forecasts for drug categories.
+* The model helped pharmacists manage inventories, reducing shortages and wastage.
