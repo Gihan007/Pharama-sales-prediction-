@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Login page</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+         body {
+            background: url('{{ url_for('static', filename='images/m5.jpg') }}');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            height: 100vh;
+            margin: 0;
+            }
+
+        .wrapper {
+            display: flex;
+            height: 120vh;
+            justify-content: center;
+            align-items: center;
+            background: url('image/m1.jpg');
+            background-size: cover;
+        }
+
+        .rectangle {
+            width: 100%;
+            max-width: 700px;
+            max-height: 500px;
+            align-items: center;
+            padding: 10px;
+            margin: 10px;
+            background: rgba(0, 17, 59, 0.5);
+            border-radius: 20px;
+            box-shadow: 5px 10px 15px rgb(0, 0, 0);
+        }
+
+        .wrapper label {
+            margin-top: 25%;
+            font-size: 20px;
+            padding: 10px;
+            margin: 10px;
+            font-family: sans-serif;
+            color: aliceblue;
+            text-shadow: 2px 2px 2px black;
+        }
+
+        #category:hover {
+            background: white;
+            border-radius: 2px;
+        }
+
+        .wrapper input {
+            border-radius: 2px;
+            box-shadow: 1px 1px black;
+            font-size: 15px;
+        }
+
+        .wrapper input:hover {
+            background: white;
+            border-radius: 2px rgb(0, 0, 0);
+        }
+
+        .wrapper button {
+            justify-content: center;
+            align-items: center;
+            width: 32%;
+            margin: 36px;
+            font-size: 15px;
+            padding: 5px;
+            border-radius: 10px;
+            border-color: rgb(0, 0, 0);
+            background: rgb(1, 1, 60);
+            color: aliceblue;
+        }
+
+        .wrapper button:hover {
+            background: rgba(11, 80, 117, 0.45);
+            color: aliceblue;
+        }
+
+        .form-title {
+            font-size: 30px;
+            font-weight: 600;
+            text-align: center;
+            padding-bottom: 6px;
+            color: aliceblue;
+            text-shadow: 3px 3px 5px black;
+            border-bottom: solid 3px white;
+            margin: 10px;
+        }
+
+        #mySidenav a {
+            position: absolute;
+            left: -300px;
+            transition: 0.9s;
+            padding: 15px;
+            width: 350px;
+            text-decoration: none;
+            font-size: 20px;
+            color: white;
+            border-radius: 0 5px 5px 0;
+            box-shadow: 2px 5px 8px black;
+            text-align: center;
+        }
+
+        #mySidenav a:hover {
+            left: 0;
+        }
+
+        .facebook {
+            top: 100px;
+            background-color: #0f22b1;
+        }
+
+        .twitter {
+            top: 160px;
+            background-color: #041c75;
+        }
+
+        .google {
+            top: 220px;
+            background-color: #09004d;
+        }
+
+        .fa-facebook {
+            float: right;
+            right: 20%;
+        }
+
+        .fa-twitter {
+            float: right;
+            right: 15%;
+        }
+
+        .fa-google {
+            float: right;
+            right: 15%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrapper">
+        <form action="/forecast" method="POST">
+            <div id="mySidenav" class="sidenav">
+                <a class="facebook" href="#">medicalsales<i class="fa fa-facebook"></i></a>
+                <a class="twitter" href="#">@medicalsales<i class="fa fa-twitter"></i></a>
+                <a class="google" href="#">medicalsales@gmail.com<i class="fa fa-google"></i></a>
+            </div>
+            <div class="rectangle">
+                <h1 class="form-title">Sales Prediction</h1>
+                <label for="category">Category :</label>
+                <select class="category" id="category" name="category">
+                    <option value="C1">M01AB</option>
+                    <option value="C2">M01AE</option>
+                    <option value="C3">N02BA</option>
+                    <option value="C4">N02BE</option>
+                    <option value="C5">N05B</option>
+                    <option value="C6">N05C</option>
+                    <option value="C7">R03</option>
+                    <option value="C8">R06</option>
+                </select><br><br>
+                <label for="date">Starting Date (MM/DD/YYYY):</label>
+                <input type="date" id="date" name="date" required><br><br>
+
+                <button type="reset" id="reset" name="reset" onclick="">Reset</button>
+                <button type="submit" id="Submit" name="Submit" onclick="">Submit</button>
+            </div>
+        </form>
+    </div>
+</body>
+
+</html>
