@@ -443,6 +443,40 @@ document.getElementById('refreshExplanation')?.addEventListener('click', async f
     }
 });
 
+// Download explanation PDF button
+document.getElementById('downloadExplanation')?.addEventListener('click', async function() {
+    const forecastValue = document.getElementById('forecastValue').textContent;
+    const category = document.getElementById('forecastCategory').textContent;
+    const date = document.getElementById('forecastDate').textContent;
+    const model = document.getElementById('forecastModel').textContent;
+    if (!forecastValue || category === '-') return;
+    try {
+        const resp = await fetch('/api/explain/report', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({
+                category,
+                prediction: parseFloat(forecastValue),
+                date,
+                model_type: model
+            })
+        });
+        if (!resp.ok) throw new Error('Failed to download PDF');
+        const blob = await resp.blob();
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'explanation.pdf';
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+        URL.revokeObjectURL(url);
+    } catch (err) {
+        console.error('PDF download error', err);
+        window.PharmaPredictAI.showNotification('Failed to download report', 'error');
+    }
+});
+
 // ============================================
 // Export Functionality
 // ============================================

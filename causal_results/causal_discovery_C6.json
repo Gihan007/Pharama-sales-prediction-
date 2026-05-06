@@ -1,0 +1,176 @@
+{
+  "causal_drivers": [
+    {
+      "variable": "year",
+      "correlation": 0.37183690177997014,
+      "strength": "weak",
+      "direction": "positive",
+      "lag": 0
+    },
+    {
+      "variable": "week",
+      "correlation": 0.37099315601910554,
+      "strength": "weak",
+      "direction": "positive",
+      "lag": -1
+    },
+    {
+      "variable": "trend",
+      "correlation": 0.37099315601910554,
+      "strength": "weak",
+      "direction": "positive",
+      "lag": -1
+    },
+    {
+      "variable": "sales_lag4",
+      "correlation": 0.251739487413747,
+      "strength": "weak",
+      "direction": "positive",
+      "lag": -4
+    },
+    {
+      "variable": "sales_lag12",
+      "correlation": 0.21107436167033652,
+      "strength": "weak",
+      "direction": "positive",
+      "lag": 4
+    },
+    {
+      "variable": "sales_lag1",
+      "correlation": 0.19077532083190182,
+      "strength": "weak",
+      "direction": "positive",
+      "lag": -1
+    },
+    {
+      "variable": "cyclical_cos",
+      "correlation": 0.0509039188779385,
+      "strength": "weak",
+      "direction": "positive",
+      "lag": 5
+    },
+    {
+      "variable": "is_holiday_season",
+      "correlation": 0.01917383401589313,
+      "strength": "weak",
+      "direction": "positive",
+      "lag": -3
+    },
+    {
+      "variable": "month",
+      "correlation": -0.018964161549342568,
+      "strength": "weak",
+      "direction": "negative",
+      "lag": 2
+    },
+    {
+      "variable": "is_rainy_season",
+      "correlation": -0.017793075127965727,
+      "strength": "weak",
+      "direction": "negative",
+      "lag": 4
+    }
+  ],
+  "granger_causality": [
+    {
+      "cause_variable": "week",
+      "target_variable": "sales",
+      "granger_causal": "True",
+      "min_p_value": 2.7943412798153434e-14,
+      "tested_lags": 5
+    },
+    {
+      "cause_variable": "month",
+      "target_variable": "sales",
+      "granger_causal": "False",
+      "min_p_value": 0.13093040947083032,
+      "tested_lags": 5
+    },
+    {
+      "cause_variable": "quarter",
+      "target_variable": "sales",
+      "granger_causal": "True",
+      "min_p_value": 0.043835079931279185,
+      "tested_lags": 5
+    },
+    {
+      "cause_variable": "year",
+      "target_variable": "sales",
+      "granger_causal": "True",
+      "min_p_value": 5.983631073669612e-14,
+      "tested_lags": 5
+    },
+    {
+      "cause_variable": "sales_lag1",
+      "target_variable": "sales",
+      "granger_causal": "True",
+      "min_p_value": 0.00010054257588154865,
+      "tested_lags": 5
+    },
+    {
+      "cause_variable": "sales_lag4",
+      "target_variable": "sales",
+      "granger_causal": "True",
+      "min_p_value": 1.1214638555828322e-06,
+      "tested_lags": 5
+    },
+    {
+      "cause_variable": "sales_lag12",
+      "target_variable": "sales",
+      "granger_causal": "True",
+      "min_p_value": 2.877601115145302e-05,
+      "tested_lags": 5
+    },
+    {
+      "cause_variable": "is_holiday_season",
+      "target_variable": "sales",
+      "granger_causal": "False",
+      "min_p_value": 0.20057716068866244,
+      "tested_lags": 5
+    },
+    {
+      "cause_variable": "is_rainy_season",
+      "target_variable": "sales",
+      "granger_causal": "False",
+      "min_p_value": 0.43935950688755987,
+      "tested_lags": 5
+    },
+    {
+      "cause_variable": "trend",
+      "target_variable": "sales",
+      "granger_causal": "True",
+      "min_p_value": 2.7943412798153434e-14,
+      "tested_lags": 5
+    },
+    {
+      "cause_variable": "cyclical_sin",
+      "target_variable": "sales",
+      "granger_causal": "False",
+      "min_p_value": 0.6984543889406198,
+      "tested_lags": 5
+    },
+    {
+      "cause_variable": "cyclical_cos",
+      "target_variable": "sales",
+      "granger_causal": "False",
+      "min_p_value": 0.3692844899069344,
+      "tested_lags": 5
+    }
+  ],
+  "correlation_matrix": {
+    "week": 0.37099315601910554,
+    "month": -0.018964161549342568,
+    "quarter": -0.017709581688463028,
+    "year": 0.37183690177997014,
+    "sales_lag1": 0.19077532083190182,
+    "sales_lag4": 0.251739487413747,
+    "sales_lag12": 0.21107436167033652,
+    "is_holiday_season": 0.01917383401589313,
+    "is_rainy_season": -0.017793075127965727,
+    "trend": 0.37099315601910554,
+    "cyclical_sin": -0.009028899692939445,
+    "cyclical_cos": 0.0509039188779385
+  },
+  "data_points": 505,
+  "timestamp": "2026-03-10T21:39:08.323536"
+}

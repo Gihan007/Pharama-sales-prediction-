@@ -28,7 +28,32 @@ def create_sequences(data, seq_length):
         ys.append(y)
     return np.array(xs), np.array(ys)
 
-def train_gru_model(data, seq_length=10, epochs=100, lr=0.001):
+# def train_gru_model(data, seq_length=10, epochs=100, lr=0.001):
+#     scaler = MinMaxScaler()
+#     data_scaled = scaler.fit_transform(data.reshape(-1, 1)).flatten()
+    
+#     model = TimeSeriesGRU()
+#     criterion = nn.MSELoss()
+#     optimizer = torch.optim.Adam(model.parameters(), lr=lr)
+
+#     X, y = create_sequences(data_scaled, seq_length)
+#     X = torch.tensor(X, dtype=torch.float32).unsqueeze(-1)
+#     y = torch.tensor(y, dtype=torch.float32).unsqueeze(-1)
+
+#     for epoch in range(epochs):
+#         model.train()
+#         optimizer.zero_grad()
+#         output = model(X)
+#         loss = criterion(output, y)
+#         loss.backward()
+#         optimizer.step()
+
+#     return model, scaler
+
+
+from torch.utils.data import TensorDataset, DataLoader
+
+def train_gru_model(data, seq_length=10, epochs=100, lr=0.001, batch_size=32):
     scaler = MinMaxScaler()
     data_scaled = scaler.fit_transform(data.reshape(-1, 1)).flatten()
     
@@ -40,13 +65,27 @@ def train_gru_model(data, seq_length=10, epochs=100, lr=0.001):
     X = torch.tensor(X, dtype=torch.float32).unsqueeze(-1)
     y = torch.tensor(y, dtype=torch.float32).unsqueeze(-1)
 
+    # --- NEW: Implement DataLoader for mini-batching ---
+    dataset = TensorDataset(X, y)
+    dataloader = DataLoader(dataset, batch_size=batch_size, shuffle=True)
+
     for epoch in range(epochs):
         model.train()
-        optimizer.zero_grad()
-        output = model(X)
-        loss = criterion(output, y)
-        loss.backward()
-        optimizer.step()
+        total_loss = 0
+        
+        # Iterate over mini-batches
+        for batch_X, batch_y in dataloader:
+            optimizer.zero_grad()
+            output = model(batch_X)
+            loss = criterion(output, batch_y)
+            loss.backward()
+            optimizer.step()
+            total_loss += loss.item()
+            
+        # Optional: Print progress
+        if (epoch + 1) % 10 == 0:
+            avg_loss = total_loss / len(dataloader)
+            print(f"Epoch [{epoch+1}/{epochs}], Loss: {avg_loss:.6f}")
 
     return model, scaler
 

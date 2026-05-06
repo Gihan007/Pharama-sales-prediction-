@@ -10,32 +10,44 @@ class TimeSeriesTransformer(nn.Module):
         super(TimeSeriesTransformer, self).__init__()
         self.input_size = input_size
         self.d_model = d_model
+        # project input features to model dimension
+        self.input_proj = nn.Linear(input_size, d_model)
         self.encoder_layer = nn.TransformerEncoderLayer(d_model=d_model, nhead=nhead, dim_feedforward=dim_feedforward, dropout=dropout)
         self.transformer_encoder = nn.TransformerEncoder(self.encoder_layer, num_layers=num_layers)
         self.decoder = nn.Linear(d_model, 1)
         self.pos_encoder = PositionalEncoding(d_model, dropout)
 
     def forward(self, src):
-        src = src * torch.sqrt(torch.tensor(self.d_model, dtype=torch.float32))
+        # src expected shape: (batch, seq_len, input_size)
+        # project to d_model
+        src = self.input_proj(src)  # (batch, seq_len, d_model)
+        # move to (seq_len, batch, d_model) for nn.Transformer modules
+        src = src.permute(1, 0, 2)
+        # scale
+        src = src * np.sqrt(self.d_model)
         src = self.pos_encoder(src)
-        output = self.transformer_encoder(src)
-        output = self.decoder(output[:, -1, :])
-        return output
+        output = self.transformer_encoder(src)  # (seq_len, batch, d_model)
+        last = output[-1, :, :]  # last time step -> (batch, d_model)
+        out = self.decoder(last)  # (batch, 1)
+        return out
 
 class PositionalEncoding(nn.Module):
     def __init__(self, d_model, dropout=0.1, max_len=5000):
         super(PositionalEncoding, self).__init__()
         self.dropout = nn.Dropout(p=dropout)
         pe = torch.zeros(max_len, d_model)
-        position = torch.arange(0, max_len, dtype=torch.float).unsqueeze(1)
-        div_term = torch.exp(torch.arange(0, d_model, 2).float() * (-torch.log(torch.tensor(10000.0)) / d_model))
+        position = torch.arange(0, max_len, dtype=torch.float32).unsqueeze(1)
+        div_term = torch.exp(torch.arange(0, d_model, 2, dtype=torch.float32) * (-np.log(10000.0) / d_model))
         pe[:, 0::2] = torch.sin(position * div_term)
         pe[:, 1::2] = torch.cos(position * div_term)
-        pe = pe.unsqueeze(0).transpose(0, 1)
+        # pe shape: (max_len, d_model)
         self.register_buffer('pe', pe)
 
     def forward(self, x):
-        x = x + self.pe[:x.size(0), :]
+        # x expected shape: (seq_len, batch, d_model)
+        seq_len = x.size(0)
+        pe = self.pe[:seq_len, :].unsqueeze(1).to(x.dtype).to(x.device)
+        x = x + pe
         return self.dropout(x)
 
 def create_sequences(data, seq_length):

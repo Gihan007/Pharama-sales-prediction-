@@ -1703,6 +1703,16 @@ input, select, textarea {
     font-size: 1.75rem;
 }
 
+/* make download/refresh buttons readable on white card */
+.explanation-header .btn-outline {
+    color: var(--primary-blue);
+    border-color: var(--primary-blue);
+}
+
+.explanation-header .btn-outline:hover {
+    background: rgba(13, 138, 188, 0.1);
+}
+
 .explanation-loading {
     display: flex;
     flex-direction: column;

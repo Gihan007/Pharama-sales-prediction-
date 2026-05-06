@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Branches - PharmaPredictAI</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <style>
+        #map { height: 70vh; width: 100%; border-radius: 8px; }
+        .branches-container { padding: 20px; }
+        .branch-list { margin-top: 12px; }
+        .branch-item { padding: 8px 0; border-bottom: 1px solid #eee; }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <i class="fas fa-heartbeat"></i>
+                <span>PharmaPredictAI</span>
+            </div>
+            <div class="nav-menu">
+                <a href="/" class="nav-link">
+                    <i class="fas fa-home"></i>
+                    <span>Dashboard</span>
+                </a>
+                <a href="/forecast" class="nav-link">
+                    <i class="fas fa-chart-line"></i>
+                    <span>Forecasting</span>
+                </a>
+                <a href="/branches" class="nav-link active">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>Branches</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="main-content branches-container">
+        <h1>Branches Map</h1>
+        <p>View branch locations across Sri Lanka.</p>
+
+        <div id="map"></div>
+
+        <div class="branch-list" id="branchList"></div>
+    </main>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="{{ url_for('static', filename='js/branches.js') }}"></script>
+</body>
+</html>
