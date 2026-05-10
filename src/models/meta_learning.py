@@ -9,7 +9,11 @@ from sklearn.preprocessing import StandardScaler
 import copy
 import higher
 import warnings
+from pathlib import Path
 warnings.filterwarnings('ignore')
+
+ROOT_DIR = Path(__file__).resolve().parents[2]
+DATA_DIR = ROOT_DIR / "data" / "raw"
 
 class TimeSeriesDataset(Dataset):
     """Dataset for meta-learning"""
@@ -144,9 +148,10 @@ class MetaLearningSystem:
         self.transfer_models = {}
         self.task_datasets = {}
 
-    def load_category_data(self, category, base_path='./'):
+    def load_category_data(self, category, base_path=None):
         """Load and prepare data for a specific category"""
-        file_path = os.path.join(base_path, f'{category}.csv')
+        data_dir = Path(base_path) if base_path else DATA_DIR
+        file_path = data_dir / f'{category}.csv'
         data = pd.read_csv(file_path, index_col=0, parse_dates=True)
 
         scaler = StandardScaler()

@@ -84,8 +84,13 @@ python -c "import src.data.download_data as dd; dd.download_all_categories()"
 
 #### Web Interface
 ```bash
+# API gateway
 python app.py
-# Visit http://localhost:5000
+
+# Frontend service
+uvicorn services.frontend_service.app.main:app --port 3001
+
+# Visit http://localhost:3001
 ```
 
 #### Command Line
@@ -102,38 +107,30 @@ python -c "from src.models.meta_learning import meta_learn_drug_categories; meta
 
 #### Docker
 ```bash
-docker build -t drug-sales-prediction .
-docker run -p 5000:5000 drug-sales-prediction
+docker compose -f infra/docker/docker-compose.yml up --build
 ```
 
 ## 📁 Project Structure
 
-```
-├── src/
-│   ├── models/              # ML model implementations
-│   │   ├── transformer_model.py
-│   │   ├── lstm_model.py
-│   │   ├── gru_model.py
-│   │   ├── meta_learning.py
-│   │   ├── advanced/        # Cutting-edge research features
-│   │   │   ├── nas_drug_prediction.py    # Neural Architecture Search
-│   │   │   └── federated_learning.py     # Federated Learning
-│   │   └── ...
-│   ├── evaluation/          # Model evaluation and comparison
-│   │   ├── ensemble_methods.py
-│   │   ├── hyperparameter_optimization.py
-│   │   └── uncertainty_quantification.py
-│   └── utils/               # Utility functions
-├── tests/                   # Comprehensive test suite
-├── docs/                    # Documentation
-├── static/                  # Web assets
-├── templates/               # HTML templates
-│   ├── nas.html            # NAS web interface
-│   ├── federated.html      # Federated learning interface
-│   └── ...
-├── models_/                 # Trained model artifacts
-├── requirements.txt         # Python dependencies
-└── app.py                   # Flask web application
+```text
+apps/
+  api_gateway/              API-only FastAPI gateway
+services/
+  frontend_service/         Standalone frontend service, templates, static assets
+  forecast_service/         Forecast inference API and forecasting logic
+  training_service/         Model training API
+  advanced_ai_service/      NAS, federated learning, causal inference
+  explainability_service/   SHAP and explanation APIs
+src/                        Shared ML/model code used by services
+data/raw/                   C1-C8 CSV files and source datasets
+artifacts/models/           Trained model artifacts
+artifacts/results/          Generated experiment outputs
+docs/                       Documentation, architecture diagrams, paper assets
+demos/                      Demo scripts
+benchmarks/                 Benchmark scripts
+scripts/                    Utility and maintenance scripts
+infra/docker/               Dockerfile, Compose, Nginx
+tests/                      Unit and integration tests
 ```
 
 ## 🔬 Research Methodology
@@ -259,14 +256,13 @@ transfer_model = meta_sys.transfer_learning('C1', 'C2')
 
 ```bash
 # Run all tests
-pytest tests/ -v --cov=src --cov-report=html
+pytest tests/ -v
 
-# Run specific test categories
-pytest tests/test_models.py -k "transformer"
-pytest tests/test_api.py -k "forecast"
+# Run service smoke tests
+pytest tests/test_services_smoke.py
 
 # Performance testing
-pytest tests/test_performance.py
+python benchmarks/benchmark_performance.py
 ```
 
 ## 📊 Evaluation Metrics
@@ -284,7 +280,7 @@ pytest tests/test_performance.py
 
 ## 🤝 Contributing
 
-We welcome contributions! Please see our [Contributing Guide](CONTRIBUTING.md) for details.
+We welcome contributions! Please see our [Contributing Guide](docs/CONTRIBUTING.md) for details.
 
 ### Development Setup
 ```bash

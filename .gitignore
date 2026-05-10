@@ -1,1 +1,14 @@
 .venv/
+.vsnv/
+__pycache__/
+*.py[cod]
+.DS_Store
+logs/
+tmp/
+.pytest_cache/
+
+# Generated outputs
+services/frontend_service/app/static/images/*.png
+services/frontend_service/app/static/images/shap/*.png
+artifacts/results/
+benchmark_results/

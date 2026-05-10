@@ -1,5 +1,6 @@
 import os
 import pandas as pd
+from pathlib import Path
 from .utils.preprocessing import create_lagged_features
 from .models.xgboost_model import fit_xgboost
 from .models.transformer_model import train_transformer_model
@@ -13,7 +14,11 @@ from .models.informer_model import train_informer_model
 import joblib
 import torch
 
-def train_xgboost_models(categories=None, base_path='../', model_dir='../models_xgb/', n_lags=5):
+ROOT_DIR = Path(__file__).resolve().parents[1]
+DATA_DIR = ROOT_DIR / "data" / "raw"
+MODEL_ARTIFACT_DIR = ROOT_DIR / "artifacts" / "models"
+
+def train_xgboost_models(categories=None, base_path=str(DATA_DIR), model_dir=str(MODEL_ARTIFACT_DIR / 'models_xgb'), n_lags=5):
     if categories is None:
         categories = [f'C{i}' for i in range(1, 9)]
     os.makedirs(model_dir, exist_ok=True)
@@ -25,7 +30,7 @@ def train_xgboost_models(categories=None, base_path='../', model_dir='../models_
         model = fit_xgboost(X, y)
         joblib.dump(model, f'{model_dir}/{cat}_xgb.pkl')
 
-def train_transformer_models(categories=None, base_path='../', model_dir='../models_transformer/', seq_length=10):
+def train_transformer_models(categories=None, base_path=str(DATA_DIR), model_dir=str(MODEL_ARTIFACT_DIR / 'models_transformer'), seq_length=10):
     if categories is None:
         categories = [f'C{i}' for i in range(1, 9)]
     os.makedirs(model_dir, exist_ok=True)
@@ -36,7 +41,7 @@ def train_transformer_models(categories=None, base_path='../', model_dir='../mod
         torch.save(model.state_dict(), f'{model_dir}/{cat}_transformer.pth')
         joblib.dump(scaler, f'{model_dir}/{cat}_scaler.pkl')
 
-def train_gru_models(categories=None, base_path='../', model_dir='../models_gru/', seq_length=10):
+def train_gru_models(categories=None, base_path=str(DATA_DIR), model_dir=str(MODEL_ARTIFACT_DIR / 'models_gru'), seq_length=10):
     if categories is None:
         categories = [f'C{i}' for i in range(1, 9)]
     os.makedirs(model_dir, exist_ok=True)
@@ -47,7 +52,7 @@ def train_gru_models(categories=None, base_path='../', model_dir='../models_gru/
         torch.save(model.state_dict(), f'{model_dir}/{cat}_gru.pth')
         joblib.dump(scaler, f'{model_dir}/{cat}_scaler.pkl')
 
-def train_lstm_models(categories=None, base_path='../', model_dir='../models_lstm/', seq_length=10):
+def train_lstm_models(categories=None, base_path=str(DATA_DIR), model_dir=str(MODEL_ARTIFACT_DIR / 'models_lstm'), seq_length=10):
     if categories is None:
         categories = [f'C{i}' for i in range(1, 9)]
     os.makedirs(model_dir, exist_ok=True)
@@ -58,7 +63,7 @@ def train_lstm_models(categories=None, base_path='../', model_dir='../models_lst
         torch.save(model.state_dict(), f'{model_dir}/{cat}_lstm.pth')
         joblib.dump(scaler, f'{model_dir}/{cat}_scaler.pkl')
 
-def train_lightgbm_models(categories=None, base_path='../', model_dir='../models_lightgbm/', n_lags=5):
+def train_lightgbm_models(categories=None, base_path=str(DATA_DIR), model_dir=str(MODEL_ARTIFACT_DIR / 'models_lightgbm'), n_lags=5):
     if categories is None:
         categories = [f'C{i}' for i in range(1, 9)]
     os.makedirs(model_dir, exist_ok=True)
@@ -69,7 +74,7 @@ def train_lightgbm_models(categories=None, base_path='../', model_dir='../models
         model.save_model(f'{model_dir}/{cat}_lightgbm.txt')
         joblib.dump(scaler, f'{model_dir}/{cat}_scaler.pkl')
 
-def train_prophet_models(categories=None, base_path='../', model_dir='../models_prophet/'):
+def train_prophet_models(categories=None, base_path=str(DATA_DIR), model_dir=str(MODEL_ARTIFACT_DIR / 'models_prophet')):
     if categories is None:
         categories = [f'C{i}' for i in range(1, 9)]
     os.makedirs(model_dir, exist_ok=True)
@@ -79,7 +84,7 @@ def train_prophet_models(categories=None, base_path='../', model_dir='../models_
         model = train_prophet_model(data, category_name=cat)
         joblib.dump(model, f'{model_dir}/{cat}_prophet.pkl')
 
-def train_tft_models(categories=None, base_path='../', model_dir='../models_tft/', seq_length=30):
+def train_tft_models(categories=None, base_path=str(DATA_DIR), model_dir=str(MODEL_ARTIFACT_DIR / 'models_tft'), seq_length=30):
     """
     Train Temporal Fusion Transformer models for all categories
     """
@@ -94,7 +99,7 @@ def train_tft_models(categories=None, base_path='../', model_dir='../models_tft/
         else:
             print(f"Failed to train TFT model for {cat}")
 
-def train_nbeats_models(categories=None, base_path='../', model_dir='../models_nbeats/', seq_length=30):
+def train_nbeats_models(categories=None, base_path=str(DATA_DIR), model_dir=str(MODEL_ARTIFACT_DIR / 'models_nbeats'), seq_length=30):
     """
     Train N-BEATS models for all categories
     """
@@ -109,7 +114,7 @@ def train_nbeats_models(categories=None, base_path='../', model_dir='../models_n
         else:
             print(f"Failed to train N-BEATS model for {cat}")
 
-def train_informer_models(categories=None, base_path='../', model_dir='../models_informer/', seq_length=30):
+def train_informer_models(categories=None, base_path=str(DATA_DIR), model_dir=str(MODEL_ARTIFACT_DIR / 'models_informer'), seq_length=30):
     """
     Train Informer models for all categories
     """

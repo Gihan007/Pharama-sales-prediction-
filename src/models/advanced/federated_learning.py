@@ -15,12 +15,17 @@ import os
 import time
 import random
 import copy
+from pathlib import Path
 from sklearn.preprocessing import MinMaxScaler
 from sklearn.metrics import mean_absolute_error, mean_squared_error
 import matplotlib.pyplot as plt
 import seaborn as sns
 import warnings
 warnings.filterwarnings('ignore')
+
+ROOT_DIR = Path(__file__).resolve().parents[3]
+DATA_DIR = ROOT_DIR / "data" / "raw"
+FEDERATED_RESULTS_DIR = ROOT_DIR / "artifacts" / "results" / "federated_results"
 
 class PharmacyClient:
     """Represents a single pharmacy in the federated learning system"""
@@ -482,7 +487,7 @@ def run_federated_drug_prediction(category: str = 'C1', num_clients: int = 5,
 
     # Load base data
     try:
-        df = pd.read_csv(f'{category}.csv')
+        df = pd.read_csv(DATA_DIR / f'{category}.csv')
         base_data = df[category].values
         print(f"📊 Loaded {len(base_data)} data points for {category}")
     except Exception as e:
@@ -508,18 +513,18 @@ def run_federated_drug_prediction(category: str = 'C1', num_clients: int = 5,
     results = fed_system.run_federated_training(num_rounds=num_rounds)
 
     # Save results
-    os.makedirs('./federated_results', exist_ok=True)
-    results_file = f'./federated_results/fed_results_{category}_{distribution_type}_{int(time.time())}.json'
+    os.makedirs(FEDERATED_RESULTS_DIR, exist_ok=True)
+    results_file = FEDERATED_RESULTS_DIR / f'fed_results_{category}_{distribution_type}_{int(time.time())}.json'
 
     with open(results_file, 'w') as f:
         json.dump(results, f, indent=2, default=str)
 
     # Save model
-    model_file = f'./federated_results/fed_model_{category}_{distribution_type}.pth'
+    model_file = FEDERATED_RESULTS_DIR / f'fed_model_{category}_{distribution_type}.pth'
     fed_system.save_federated_model(model_file)
 
     # Plot training progress
-    plot_file = f'./federated_results/fed_training_{category}_{distribution_type}.png'
+    plot_file = FEDERATED_RESULTS_DIR / f'fed_training_{category}_{distribution_type}.png'
     fed_system.plot_training_progress(plot_file)
 
     print("\n📈 Federated Learning Summary:")
@@ -538,7 +543,7 @@ def compare_federated_vs_centralized(category: str = 'C1'):
     print("=" * 60)
 
     # Load data
-    df = pd.read_csv(f'{category}.csv')
+    df = pd.read_csv(DATA_DIR / f'{category}.csv')
     data = df[category].values
 
     # Split data for centralized training
@@ -634,7 +639,8 @@ def compare_federated_vs_centralized(category: str = 'C1'):
         'improvement': {'mae_percent': mae_improvement, 'rmse_percent': rmse_improvement}
     }
 
-    with open(f'./federated_results/comparison_{category}.json', 'w') as f:
+    os.makedirs(FEDERATED_RESULTS_DIR, exist_ok=True)
+    with open(FEDERATED_RESULTS_DIR / f'comparison_{category}.json', 'w') as f:
         json.dump(comparison, f, indent=2, default=str)
 
     return comparison

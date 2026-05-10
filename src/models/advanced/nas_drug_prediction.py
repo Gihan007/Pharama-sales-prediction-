@@ -14,6 +14,7 @@ import json
 import os
 import time
 import random
+from pathlib import Path
 from dataclasses import dataclass
 from sklearn.preprocessing import MinMaxScaler
 from sklearn.metrics import mean_absolute_error, mean_squared_error
@@ -21,6 +22,9 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import warnings
 warnings.filterwarnings('ignore')
+
+ROOT_DIR = Path(__file__).resolve().parents[3]
+DATA_DIR = ROOT_DIR / "data" / "raw"
 
 @dataclass
 class ArchitectureConfig:
@@ -333,7 +337,7 @@ class DrugPredictionNAS:
     def load_drug_data(self, category: str) -> Tuple[np.ndarray, np.ndarray]:
         """Load and split drug sales data"""
         try:
-            df = pd.read_csv(f'{category}.csv')
+            df = pd.read_csv(DATA_DIR / f'{category}.csv')
             data = df[category].values
 
             # Split into train/validation (80/20)

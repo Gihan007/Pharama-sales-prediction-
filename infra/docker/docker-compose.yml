@@ -1,0 +1,162 @@
+services:
+  web-ui:
+    build:
+      context: ../..
+      dockerfile: infra/docker/Dockerfile
+      target: production
+    command: uvicorn services.frontend_service.app.main:app --host 0.0.0.0 --port 3001
+    ports:
+      - "3001:3001"
+    environment:
+      - API_GATEWAY_URL=http://api-gateway:5000
+    volumes:
+      - ../../services/frontend_service/app/static/images:/app/services/frontend_service/app/static/images:rw
+    depends_on:
+      - api-gateway
+    restart: unless-stopped
+
+  api-gateway:
+    build:
+      context: ../..
+      dockerfile: infra/docker/Dockerfile
+      target: production
+    command: uvicorn apps.api_gateway.main:app --host 0.0.0.0 --port 5000
+    ports:
+      - "5000:5000"
+    volumes:
+      - ../../data:/app/data:ro
+      - ../../artifacts:/app/artifacts:rw
+      - ../../services/frontend_service/app/static/images:/app/services/frontend_service/app/static/images:rw
+    depends_on:
+      - redis
+      - forecast-service
+      - explainability-service
+    restart: unless-stopped
+
+  forecast-service:
+    build:
+      context: ../..
+      dockerfile: infra/docker/Dockerfile
+      target: production
+    command: uvicorn services.forecast_service.app.main:app --host 0.0.0.0 --port 5001
+    ports:
+      - "5001:5001"
+    volumes:
+      - ../../data:/app/data:ro
+      - ../../artifacts/models:/app/artifacts/models:ro
+      - ../../services/frontend_service/app/static/images:/app/services/frontend_service/app/static/images:rw
+    restart: unless-stopped
+
+  training-service:
+    build:
+      context: ../..
+      dockerfile: infra/docker/Dockerfile
+      target: production
+    command: uvicorn services.training_service.app.main:app --host 0.0.0.0 --port 5002
+    ports:
+      - "5002:5002"
+    volumes:
+      - ../../data:/app/data:ro
+      - ../../artifacts/models:/app/artifacts/models:rw
+      - ../../artifacts/results:/app/artifacts/results:rw
+    depends_on:
+      - redis
+    restart: unless-stopped
+
+  advanced-ai-service:
+    build:
+      context: ../..
+      dockerfile: infra/docker/Dockerfile
+      target: production
+    command: uvicorn services.advanced_ai_service.app.main:app --host 0.0.0.0 --port 5003
+    ports:
+      - "5003:5003"
+    volumes:
+      - ../../data:/app/data:ro
+      - ../../artifacts:/app/artifacts:rw
+    depends_on:
+      - redis
+    restart: unless-stopped
+
+  explainability-service:
+    build:
+      context: ../..
+      dockerfile: infra/docker/Dockerfile
+      target: production
+    command: uvicorn services.explainability_service.app.main:app --host 0.0.0.0 --port 5004
+    ports:
+      - "5004:5004"
+    volumes:
+      - ../../data:/app/data:ro
+      - ../../artifacts/models:/app/artifacts/models:ro
+      - ../../services/frontend_service/app/static/images:/app/services/frontend_service/app/static/images:rw
+    restart: unless-stopped
+
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    restart: unless-stopped
+    command: redis-server --appendonly yes
+
+  postgres:
+    image: postgres:14-alpine
+    environment:
+      POSTGRES_DB: drug_prediction
+      POSTGRES_USER: prediction_user
+      POSTGRES_PASSWORD: secure_password_2024
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    restart: unless-stopped
+
+  nginx:
+    image: nginx:alpine
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+      - ../../services/frontend_service/app/static:/app/services/frontend_service/app/static:ro
+    depends_on:
+      - web-ui
+      - api-gateway
+    restart: unless-stopped
+
+  prometheus:
+    image: prom/prometheus:latest
+    ports:
+      - "9090:9090"
+    volumes:
+      - ../monitoring/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - prometheus_data:/prometheus
+    command:
+      - "--config.file=/etc/prometheus/prometheus.yml"
+      - "--storage.tsdb.path=/prometheus"
+      - "--web.enable-lifecycle"
+    restart: unless-stopped
+
+  grafana:
+    image: grafana/grafana:latest
+    ports:
+      - "3000:3000"
+    environment:
+      GF_SECURITY_ADMIN_PASSWORD: admin_password_2024
+    volumes:
+      - grafana_data:/var/lib/grafana
+    depends_on:
+      - prometheus
+    restart: unless-stopped
+
+volumes:
+  redis_data:
+  postgres_data:
+  prometheus_data:
+  grafana_data:
+
+networks:
+  default:
+    name: drug_prediction_network

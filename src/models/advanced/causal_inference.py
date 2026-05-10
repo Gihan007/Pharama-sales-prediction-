@@ -38,6 +38,10 @@ import os
 import json
 from datetime import datetime
 import logging
+from pathlib import Path
+
+ROOT_DIR = Path(__file__).resolve().parents[3]
+DATA_DIR = ROOT_DIR / "data" / "raw"
 
 # Causal inference libraries
 try:
@@ -101,7 +105,7 @@ class CausalInferenceEngine:
         """
         try:
             # Load base sales data
-            df = pd.read_csv(f'{category}.csv')
+            df = pd.read_csv(DATA_DIR / f'{category}.csv')
             data = df[category].values
 
             # Create time series DataFrame
