@@ -9,9 +9,9 @@
 
 > A comprehensive machine learning system for predicting pharmaceutical sales across Sri Lankan regions using advanced meta-learning techniques, ensemble methods, and uncertainty quantification.
 
-## 🌟 Key Features
+## Key Features
 
-### 🤖 Advanced ML Models
+### Advanced ML Models
 - **Deep Learning**: LSTM, GRU, Transformer architectures
 - **Ensemble Methods**: XGBoost, LightGBM, Random Forest
 - **Statistical Models**: SARIMAX, Prophet
@@ -19,7 +19,7 @@
 - **Neural Architecture Search**: Evolutionary algorithms for automated model optimization
 - **Federated Learning**: Privacy-preserving collaborative training across pharmacies
 
-### 🎯 Research Contributions
+### Research Contributions
 - **Uncertainty Quantification**: Monte Carlo dropout, ensemble variance
 - **Model Interpretability**: SHAP values, feature importance analysis
 - **Transfer Learning**: Cross-category knowledge transfer
@@ -27,7 +27,7 @@
 - **Automated Architecture Search**: Evolutionary NAS for optimal neural networks
 - **Privacy-Preserving Learning**: Federated averaging without data sharing
 
-### 🌐 Web Interface
+### Web Interface
 - **Interactive Dashboard**: Real-time forecasting and visualization
 - **Model Selection**: Choose from 8+ different algorithms
 - **Meta-Learning Playground**: Experiment with advanced learning techniques
@@ -35,7 +35,7 @@
 - **Federated Learning Hub**: Privacy-preserving collaborative training
 - **RESTful API**: Programmatic access to all functionalities
 
-## 📊 Performance Benchmarks
+## Performance Benchmarks
 
 | Model | MAE | RMSE | MAPE | Training Time |
 |-------|-----|------|------|---------------|
@@ -46,7 +46,7 @@
 
 *Benchmarks on Sri Lankan drug sales data (2014-2023)*
 
-## 🚀 Quick Start
+## Quick Start
 
 ### Prerequisites
 ```bash
@@ -110,7 +110,7 @@ python -c "from src.models.meta_learning import meta_learn_drug_categories; meta
 docker compose -f infra/docker/docker-compose.yml up --build
 ```
 
-## 📁 Project Structure
+## Project Structure
 
 ```text
 apps/
@@ -133,7 +133,7 @@ infra/docker/               Dockerfile, Compose, Nginx
 tests/                      Unit and integration tests
 ```
 
-## 🔬 Research Methodology
+## Research Methodology
 
 ### Meta-Learning Framework
 Our system implements Model-Agnostic Meta-Learning (MAML) for few-shot adaptation across drug categories:
@@ -190,7 +190,7 @@ for _ in range(100):
 uncertainty = np.std(predictions)
 ```
 
-## 📈 API Reference
+## API Reference
 
 ### REST Endpoints
 
@@ -252,7 +252,7 @@ federated_results = run_federated_drug_prediction('C1', num_clients=5, num_round
 transfer_model = meta_sys.transfer_learning('C1', 'C2')
 ```
 
-## 🧪 Testing
+## Testing
 
 ```bash
 # Run all tests
@@ -265,7 +265,7 @@ pytest tests/test_services_smoke.py
 python benchmarks/benchmark_performance.py
 ```
 
-## 📊 Evaluation Metrics
+## Evaluation Metrics
 
 ### Standard Metrics
 - **MAE**: Mean Absolute Error
@@ -278,7 +278,7 @@ python benchmarks/benchmark_performance.py
 - **Model Calibration**: Reliability of uncertainty estimates
 - **Transfer Learning Gain**: Performance improvement from transfer
 
-## 🤝 Contributing
+## Contributing
 
 We welcome contributions! Please see our [Contributing Guide](docs/CONTRIBUTING.md) for details.
 
@@ -301,7 +301,7 @@ pytest tests/
 - **Docstrings** following Google style
 - **Unit test coverage** > 90%
 
-## 📚 Documentation
+## Documentation
 
 Detailed documentation is available at [https://drug-sales-prediction.readthedocs.io/](https://drug-sales-prediction.readthedocs.io/)
 
@@ -311,23 +311,23 @@ Detailed documentation is available at [https://drug-sales-prediction.readthedoc
 - [Research Methodology](docs/methodology.md)
 - [Deployment Guide](docs/deployment.md)
 
-## 🏆 Awards & Recognition
+## Awards & Recognition
 
 - **IEEE Conference Paper**: "Meta-Learning for Drug Sales Prediction in Developing Regions"
 - **Best Student Paper**: International Conference on Healthcare Analytics 2024
 - **Open Source Excellence**: Featured in PyTorch Ecosystem
 
-## 📄 License
+## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## 🙏 Acknowledgments
+## Acknowledgments
 
 - **Data Source**: Sri Lankan pharmaceutical sales data (anonymized)
 - **Research Funding**: University of Colombo Research Grant
 - **Open Source Libraries**: PyTorch, scikit-learn, pandas, Flask
 
-## 📞 Contact
+## Contact
 
 **Gihan Lakmal**
 - Email: gihan.lakmal@research.uni Colombo.edu.lk
@@ -341,6 +341,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ---
 
-**⭐ Star this repository if you find it useful!**
+**Star this repository if you find it useful!**
 
-*Built with ❤️ for advancing healthcare analytics in developing regions*
+*Built for advancing healthcare analytics in developing regions*
