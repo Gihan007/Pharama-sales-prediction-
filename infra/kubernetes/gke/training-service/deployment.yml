@@ -1,0 +1,54 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: training-service
+  namespace: drug-sales
+  labels:
+    app: training-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: training-service
+  template:
+    metadata:
+      labels:
+        app: training-service
+    spec:
+      containers:
+        - name: training-service
+          image: REGION-docker.pkg.dev/PROJECT_ID/REPOSITORY/drug-sales-platform:latest
+          imagePullPolicy: IfNotPresent
+          command: ["uvicorn"]
+          args:
+            - "services.training_service.app.main:app"
+            - "--host"
+            - "0.0.0.0"
+            - "--port"
+            - "5002"
+          envFrom:
+            - configMapRef:
+                name: drug-sales-config
+            - secretRef:
+                name: drug-sales-secrets
+          ports:
+            - containerPort: 5002
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 5002
+            initialDelaySeconds: 15
+            periodSeconds: 10
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 5002
+            initialDelaySeconds: 45
+            periodSeconds: 20
+          resources:
+            requests:
+              cpu: "1"
+              memory: "2Gi"
+            limits:
+              cpu: "4"
+              memory: "8Gi"

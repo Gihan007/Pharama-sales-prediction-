@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: drug-sales
+  labels:
+    app.kubernetes.io/name: drug-sales-platform
+    app.kubernetes.io/part-of: drug-sales-platform

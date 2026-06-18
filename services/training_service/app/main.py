@@ -2,8 +2,10 @@ from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel, ConfigDict
 from typing import List, Optional
 
+from libs.common.metrics import install_metrics
 
 app = FastAPI(title="Training Service")
+install_metrics(app, "training-service")
 
 
 class TrainingRequest(BaseModel):

@@ -1,10 +1,12 @@
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel, ConfigDict
 
+from libs.common.metrics import install_metrics
 from services.explainability_service.app.shap_explainer import get_model_explainability
 
 
 app = FastAPI(title="Explainability Service")
+install_metrics(app, "explainability-service")
 
 
 class ExplainabilityRequest(BaseModel):

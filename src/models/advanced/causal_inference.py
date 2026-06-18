@@ -31,7 +31,6 @@ import pandas as pd
 import numpy as np
 import networkx as nx
 import matplotlib.pyplot as plt
-import seaborn as sns
 from typing import Dict, List, Tuple, Optional, Any
 import warnings
 import os
@@ -63,6 +62,32 @@ except ImportError:
 # Set up logging
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
+
+
+class SimpleLinearRegression:
+    def fit(self, X, y):
+        X_arr = np.asarray(X, dtype=float)
+        y_arr = np.asarray(y, dtype=float)
+        X_design = np.column_stack([np.ones(len(X_arr)), X_arr])
+        self.coef_ = np.linalg.pinv(X_design) @ y_arr
+        return self
+
+    def predict(self, X):
+        X_arr = np.asarray(X, dtype=float)
+        X_design = np.column_stack([np.ones(len(X_arr)), X_arr])
+        return X_design @ self.coef_
+
+    def score(self, X, y):
+        y_arr = np.asarray(y, dtype=float)
+        predictions = self.predict(X)
+        ss_res = np.sum((y_arr - predictions) ** 2)
+        ss_tot = np.sum((y_arr - np.mean(y_arr)) ** 2)
+        return float(1 - ss_res / ss_tot) if ss_tot else 0.0
+
+
+def _train_test_split(X, y, test_size=0.2):
+    split_idx = max(1, int(len(X) * (1 - test_size)))
+    return X.iloc[:split_idx], X.iloc[split_idx:], y.iloc[:split_idx], y.iloc[split_idx:]
 
 class CausalInferenceEngine:
     """
@@ -438,20 +463,16 @@ class CausalInferenceEngine:
             # Load data
             data = self.load_drug_data(category)
 
-            # Simple counterfactual: what-if analysis using regression
-            from sklearn.linear_model import LinearRegression
-            from sklearn.model_selection import train_test_split
-
             # Prepare features
             feature_cols = [col for col in data.columns
-                          if col not in [outcome_variable, 'date', intervention_variable]]
+                          if col not in [outcome_variable, 'date']]
 
             X = data[feature_cols]
             y = data[outcome_variable]
 
             # Train model
-            X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
-            model = LinearRegression()
+            X_train, X_test, y_train, y_test = _train_test_split(X, y, test_size=0.2)
+            model = SimpleLinearRegression()
             model.fit(X_train, y_train)
 
             # Create counterfactual scenario
@@ -687,7 +708,7 @@ def run_causal_analysis_for_category(category: str = 'C1') -> Dict[str, Any]:
         Complete causal analysis results
     """
     engine = CausalInferenceEngine()
-    return engine.run_complete_causal_analysis(category)
+    return engine.complete_causal_analysis(category)
 
 
 if __name__ == "__main__":

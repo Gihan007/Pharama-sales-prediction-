@@ -39,10 +39,13 @@ def train_lightgbm_model(data, n_lags=5):
 
 def forecast_lightgbm(category, n_lags=5, n_steps=1, base_path='', model_dir='./models_lightgbm/'):
     df = pd.read_csv(f'{base_path}{category}.csv', parse_dates=['datum'], index_col='datum')
-    model = lgb.Booster(model_file=f'{model_dir}{category}_lightgbm.txt')
-    scaler = joblib.load(f'{model_dir}{category}_scaler.pkl')
-
     data = df[category].values
+
+    # The checked-in LightGBM text artifacts are not portable across all local
+    # LightGBM builds, and their native loader can fail before Python recovers.
+    # Train a small local model from the bundled CSV so the endpoint stays live.
+    model, scaler = train_lightgbm_model(data, n_lags=n_lags)
+
     data_scaled = scaler.transform(data.reshape(-1, 1)).flatten()
 
     predictions = []

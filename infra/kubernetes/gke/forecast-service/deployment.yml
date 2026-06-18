@@ -1,0 +1,54 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: forecast-service
+  namespace: drug-sales
+  labels:
+    app: forecast-service
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: forecast-service
+  template:
+    metadata:
+      labels:
+        app: forecast-service
+    spec:
+      containers:
+        - name: forecast-service
+          image: REGION-docker.pkg.dev/PROJECT_ID/REPOSITORY/drug-sales-platform:latest
+          imagePullPolicy: IfNotPresent
+          command: ["uvicorn"]
+          args:
+            - "services.forecast_service.app.main:app"
+            - "--host"
+            - "0.0.0.0"
+            - "--port"
+            - "5001"
+          envFrom:
+            - configMapRef:
+                name: drug-sales-config
+            - secretRef:
+                name: drug-sales-secrets
+          ports:
+            - containerPort: 5001
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 5001
+            initialDelaySeconds: 10
+            periodSeconds: 10
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 5001
+            initialDelaySeconds: 30
+            periodSeconds: 20
+          resources:
+            requests:
+              cpu: "500m"
+              memory: "1Gi"
+            limits:
+              cpu: "2"
+              memory: "3Gi"

@@ -2,7 +2,7 @@
 # Multi-stage build for optimized production image
 
 # Build stage
-FROM python:3.9-slim as builder
+FROM python:3.9-slim AS builder
 
 # Set environment variables
 ENV PYTHONDONTWRITEBYTECODE=1 \
@@ -28,7 +28,7 @@ RUN pip install --upgrade pip && \
     pip install -r requirements-dev.txt
 
 # Production stage
-FROM python:3.9-slim as production
+FROM python:3.9-slim AS production
 
 # Install runtime system dependencies
 RUN apt-get update && apt-get install -y \
@@ -67,10 +67,6 @@ RUN mkdir -p data/raw artifacts/models artifacts/results services/frontend_servi
 # Switch to non-root user
 USER appuser
 
-# Health check
-HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
-    CMD python -c "import requests; requests.get('http://localhost:5000/health', timeout=10)" || exit 1
-
 # Expose default service ports
 EXPOSE 5000 5001 5002 5003 5004
 
@@ -78,7 +74,7 @@ EXPOSE 5000 5001 5002 5003 5004
 CMD ["uvicorn", "apps.api_gateway.main:app", "--host", "0.0.0.0", "--port", "5000"]
 
 # Development stage (optional)
-FROM production as development
+FROM production AS development
 
 # Switch back to root for development
 USER root

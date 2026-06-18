@@ -13,6 +13,12 @@ scrape_configs:
       - targets: ['localhost:9090']
 
   # Drug Sales Prediction services
+  - job_name: 'web-ui'
+    static_configs:
+      - targets: ['web-ui:3001']
+    scrape_interval: 5s
+    metrics_path: '/metrics'
+
   - job_name: 'api-gateway'
     static_configs:
       - targets: ['api-gateway:5000']
@@ -46,13 +52,13 @@ scrape_configs:
   # Redis cache
   - job_name: 'redis'
     static_configs:
-      - targets: ['redis:6379']
+      - targets: ['redis-exporter:9121']
     scrape_interval: 30s
 
   # PostgreSQL database (if used)
   - job_name: 'postgres'
     static_configs:
-      - targets: ['postgres:5432']
+      - targets: ['postgres-exporter:9187']
     scrape_interval: 30s
 
   # Node exporter for system metrics

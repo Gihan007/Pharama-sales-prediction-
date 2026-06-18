@@ -241,14 +241,6 @@ def get_prophet_forecast(category, days_ahead, base_path=''):
 def get_ensemble_forecast(category, days_ahead, base_path=''):
     """Get ensemble forecast using weighted average"""
     try:
-        # Import ensemble methods
-        from evaluation.ensemble_methods import EnsembleMethods
-
-        ensemble = EnsembleMethods()
-        
-        # Update the ensemble methods to use correct base_path
-        original_get_predictions = ensemble.get_model_predictions
-        
         def patched_get_predictions(cat, n_steps):
             predictions = {}
             
@@ -286,10 +278,8 @@ def get_ensemble_forecast(category, days_ahead, base_path=''):
                     predictions[model_name] = np.zeros(n_steps)
 
             return predictions
-        
-        ensemble.get_model_predictions = patched_get_predictions
-        
-        predictions = ensemble.get_model_predictions(category, n_steps=days_ahead)
+
+        predictions = patched_get_predictions(category, n_steps=days_ahead)
 
         # Convert all predictions to single values and calculate simple average
         valid_predictions = []

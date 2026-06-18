@@ -396,9 +396,131 @@ def get_model_explainability(category, model_type='xgboost', base_path=''):
     """Wrapper function to get model explainability"""
     try:
         explainer = SHAPExplainer(category, base_path)
-        return explainer.get_explanation_summary(model_type)
+        results = explainer.get_explanation_summary(model_type)
+        if results is not None:
+            return results
+
+        return get_fallback_explainability(category, model_type, base_path)
     except Exception as e:
         print(f"Error in get_model_explainability: {e}")
         import traceback
         traceback.print_exc()
+        return get_fallback_explainability(category, model_type, base_path)
+
+
+def get_fallback_explainability(category, model_type='xgboost', base_path=''):
+    """Return model explainability without SHAP when optional binary deps fail."""
+    try:
+        explainer = SHAPExplainer(category, base_path)
+        csv_path = _category_csv_path(category, base_path)
+        df = pd.read_csv(csv_path, index_col=0, parse_dates=True)
+        X, y = explainer.create_features(df, n_lags=5)
+
+        importance = _fallback_feature_importance(category, model_type, X, y, base_path)
+        sorted_importance = dict(sorted(importance.items(), key=lambda item: item[1], reverse=True))
+        top_features = list(sorted_importance.items())[:5]
+        summary_plot = _save_fallback_importance_plot(category, model_type, sorted_importance)
+        waterfall_plot = _save_fallback_contribution_plot(category, model_type, top_features)
+
+        return {
+            'feature_importance': sorted_importance,
+            'top_features': dict(top_features),
+            'summary_plot': summary_plot,
+            'waterfall_plot': waterfall_plot,
+            'interpretation': explainer._generate_interpretation(top_features),
+            'model_type': f'{model_type} fallback',
+            'category': category,
+            'method': 'fallback_lag_importance',
+            'note': 'SHAP was unavailable, so lag importance was estimated from model importances or historical correlations.'
+        }
+    except Exception as exc:
+        print(f"Fallback explainability failed: {exc}")
+        return None
+
+
+def _fallback_feature_importance(category, model_type, X, y, base_path=''):
+    feature_names = [f'sales_lag_{i+1}' for i in range(X.shape[1])]
+
+    model_importance = _load_model_feature_importance(category, model_type, base_path)
+    if model_importance is not None and len(model_importance) == len(feature_names):
+        values = np.abs(np.asarray(model_importance, dtype=float))
+    else:
+        values = []
+        for idx in range(X.shape[1]):
+            corr = np.corrcoef(X[:, idx], y)[0, 1]
+            values.append(0.0 if np.isnan(corr) else abs(float(corr)))
+        values = np.asarray(values, dtype=float)
+
+    if float(values.sum()) == 0.0:
+        values = np.ones(len(feature_names), dtype=float)
+
+    normalized = values / values.sum()
+    return {name: float(value) for name, value in zip(feature_names, normalized)}
+
+
+def _load_model_feature_importance(category, model_type, base_path=''):
+    try:
+        if model_type == 'xgboost':
+            import pickle
+            model_path = _model_path('models_xgb', f'{category}_xgb.pkl', base_path)
+            with open(model_path, 'rb') as handle:
+                model = pickle.load(handle)
+            if hasattr(model, 'feature_importances_'):
+                return model.feature_importances_
+            if hasattr(model, 'get_score'):
+                scores = model.get_score(importance_type='gain')
+                return [scores.get(f'f{idx}', 0.0) for idx in range(5)]
+
+    except Exception as exc:
+        print(f"Model feature importance unavailable for {model_type}: {exc}")
+
+    return None
+
+
+def _save_fallback_importance_plot(category, model_type, importance):
+    try:
+        os.makedirs(SHAP_IMAGE_DIR, exist_ok=True)
+        timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
+        filename = f'fallback_importance_{category}_{model_type}_{timestamp}.png'
+        filepath = SHAP_IMAGE_DIR / filename
+
+        labels = list(importance.keys())
+        values = list(importance.values())
+
+        plt.figure(figsize=(10, 6))
+        plt.barh(labels[::-1], values[::-1], color='#0D8ABC')
+        plt.xlabel('Relative Importance')
+        plt.title(f'{category} - Lag Feature Importance')
+        plt.tight_layout()
+        plt.savefig(filepath, dpi=150, bbox_inches='tight')
+        plt.close()
+        return filename
+    except Exception as exc:
+        print(f"Fallback importance plot failed: {exc}")
+        return None
+
+
+def _save_fallback_contribution_plot(category, model_type, top_features):
+    try:
+        os.makedirs(SHAP_IMAGE_DIR, exist_ok=True)
+        timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
+        filename = f'fallback_contribution_{category}_{model_type}_{timestamp}.png'
+        filepath = SHAP_IMAGE_DIR / filename
+
+        labels = [feature for feature, _ in top_features]
+        values = [value for _, value in top_features]
+        cumulative = np.cumsum(values)
+
+        plt.figure(figsize=(10, 6))
+        plt.plot(labels, cumulative, marker='o', color='#28A745', linewidth=2)
+        plt.fill_between(labels, cumulative, color='#28A745', alpha=0.15)
+        plt.ylabel('Cumulative Relative Contribution')
+        plt.title(f'{category} - Top Lag Contributions')
+        plt.xticks(rotation=30, ha='right')
+        plt.tight_layout()
+        plt.savefig(filepath, dpi=150, bbox_inches='tight')
+        plt.close()
+        return filename
+    except Exception as exc:
+        print(f"Fallback contribution plot failed: {exc}")
         return None

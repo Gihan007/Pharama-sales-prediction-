@@ -5,14 +5,13 @@ Run from project root: python llm_finetuning/4_inference/test_explainer.py
 
 import os
 import json
-import torch
-from transformers import AutoTokenizer, AutoModelForCausalLM
-from peft import PeftModel
 
 class PharmaceuticalLLMExplainer:
     """Test pharmaceutical explanation generation"""
     
     def __init__(self, model_path: str = "../output/fine_tuned_model"):
+        import torch
+
         self.model_path = model_path
         self.device = "cuda" if torch.cuda.is_available() else "cpu"
         print(f"🖥️  Using device: {self.device}")
@@ -21,6 +20,16 @@ class PharmaceuticalLLMExplainer:
     
     def load_model(self):
         """Load fine-tuned model"""
+        try:
+            import torch
+            from transformers import AutoTokenizer, AutoModelForCausalLM
+            from peft import PeftModel
+        except ImportError as exc:
+            raise RuntimeError(
+                "LLM inference dependencies are not installed. "
+                "Install them with: pip install -r requirements-llm.txt"
+            ) from exc
+
         print(f"\n📥 Loading model from {self.model_path}...")
         
         if not os.path.exists(self.model_path):
@@ -55,6 +64,7 @@ class PharmaceuticalLLMExplainer:
     
     def generate_explanation(self, prediction_data: dict) -> str:
         """Generate pharmaceutical explanation"""
+        import torch
         
         # Build prompt
         prompt = self.build_prompt(prediction_data)

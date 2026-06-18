@@ -14,17 +14,42 @@ import json
 import os
 import time
 import random
+import builtins
 from pathlib import Path
 from dataclasses import dataclass
-from sklearn.preprocessing import MinMaxScaler
-from sklearn.metrics import mean_absolute_error, mean_squared_error
 import matplotlib.pyplot as plt
-import seaborn as sns
 import warnings
 warnings.filterwarnings('ignore')
 
 ROOT_DIR = Path(__file__).resolve().parents[3]
 DATA_DIR = ROOT_DIR / "data" / "raw"
+
+
+def print(*args, **kwargs):
+    safe_args = [str(arg).encode('ascii', 'replace').decode('ascii') for arg in args]
+    builtins.print(*safe_args, **kwargs)
+
+
+class SimpleMinMaxScaler:
+    def fit_transform(self, values: np.ndarray) -> np.ndarray:
+        self.min_ = float(np.min(values))
+        self.max_ = float(np.max(values))
+        scale = self.max_ - self.min_
+        if scale == 0:
+            return np.zeros_like(values, dtype=float)
+        return (values - self.min_) / scale
+
+
+def mean_absolute_error(actual, predicted) -> float:
+    actual = np.asarray(actual, dtype=float)
+    predicted = np.asarray(predicted, dtype=float)
+    return float(np.mean(np.abs(actual - predicted)))
+
+
+def mean_squared_error(actual, predicted) -> float:
+    actual = np.asarray(actual, dtype=float)
+    predicted = np.asarray(predicted, dtype=float)
+    return float(np.mean((actual - predicted) ** 2))
 
 @dataclass
 class ArchitectureConfig:
@@ -97,7 +122,7 @@ class ArchitectureEvaluator:
 
     def __init__(self, device: str = 'cuda' if torch.cuda.is_available() else 'cpu'):
         self.device = device
-        self.scaler = MinMaxScaler()
+        self.scaler = SimpleMinMaxScaler()
 
     def prepare_data(self, data: np.ndarray, seq_length: int) -> Tuple[torch.Tensor, torch.Tensor]:
         """Prepare time series data for training"""
@@ -116,7 +141,7 @@ class ArchitectureEvaluator:
         return X, y
 
     def evaluate_architecture(self, config: ArchitectureConfig, train_data: np.ndarray,
-                            val_data: np.ndarray, max_epochs: int = 50) -> Dict[str, float]:
+                            val_data: np.ndarray, max_epochs: int = 5) -> Dict[str, float]:
         """Evaluate a single architecture"""
 
         # Prepare data
@@ -137,7 +162,7 @@ class ArchitectureEvaluator:
 
         # Training loop
         best_val_loss = float('inf')
-        patience = 10
+        patience = 2
         patience_counter = 0
 
         for epoch in range(max_epochs):
@@ -204,7 +229,7 @@ class ArchitectureEvaluator:
 class EvolutionarySearch:
     """Evolutionary algorithm for neural architecture search"""
 
-    def __init__(self, population_size: int = 20, generations: int = 10,
+    def __init__(self, population_size: int = 4, generations: int = 10,
                  mutation_rate: float = 0.1, crossover_rate: float = 0.8):
         self.population_size = population_size
         self.generations = generations

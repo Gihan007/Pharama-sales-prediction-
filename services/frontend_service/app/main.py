@@ -7,6 +7,7 @@ from fastapi.responses import JSONResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 
+from libs.common.metrics import install_metrics
 
 APP_DIR = Path(__file__).resolve().parent
 STATIC_DIR = APP_DIR / "static"
@@ -14,6 +15,7 @@ TEMPLATES_DIR = APP_DIR / "templates"
 API_GATEWAY_URL = os.environ.get("API_GATEWAY_URL", "http://127.0.0.1:5000")
 
 app = FastAPI(title="Web UI Service")
+install_metrics(app, "web-ui")
 
 if STATIC_DIR.is_dir():
     app.mount("/static", StaticFiles(directory=str(STATIC_DIR)), name="static")

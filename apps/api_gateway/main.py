@@ -1,5 +1,3 @@
-import pandas as pd
-import numpy as np
 import os
 import json
 import sys
@@ -15,8 +13,11 @@ for import_path in (ROOT_DIR, ROOT_DIR / "src"):
         sys.path.insert(0, str(import_path))
 
 from services.forecast_service.app.forecasting import forecast_sales
+from libs.common.metrics import install_metrics
+from libs.common.serialization import make_json_serializable
 
 app = FastAPI()
+install_metrics(app, "api-gateway")
 
 
 @app.get('/health')
@@ -31,28 +32,6 @@ async def root():
         'status': 'healthy',
         'message': 'Frontend is served by the web-ui service.',
     }
-
-
-# Helper function to convert non-serializable types to JSON-serializable types
-def make_json_serializable(obj):
-    if isinstance(obj, dict):
-        return {key: make_json_serializable(value) for key, value in obj.items()}
-    elif isinstance(obj, list):
-        return [make_json_serializable(item) for item in obj]
-    elif isinstance(obj, (np.integer, np.int64, np.int32)):
-        return int(obj)
-    elif isinstance(obj, (np.floating, np.float64, np.float32)):
-        return float(obj)
-    elif isinstance(obj, np.ndarray):
-        return make_json_serializable(obj.tolist())
-    elif isinstance(obj, (np.bool_, bool)):
-        return bool(obj)
-    elif isinstance(obj, (pd.Timestamp, pd.DatetimeIndex)):
-        return str(obj)
-    elif pd.isna(obj):
-        return None
-    else:
-        return obj
 
 
 @app.get('/api/branches')

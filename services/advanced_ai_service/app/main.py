@@ -1,8 +1,11 @@
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 
+from libs.common.metrics import install_metrics
+from libs.common.serialization import make_json_serializable
 
 app = FastAPI(title="Advanced AI Service")
+install_metrics(app, "advanced-ai-service")
 
 
 class NASRequest(BaseModel):
@@ -34,7 +37,7 @@ async def nas_search(payload: NASRequest):
 
         nas = DrugPredictionNAS(save_dir="./artifacts/results/nas_results")
         result = nas.search_optimal_architecture(payload.category, payload.generations)
-        return {"success": True, "result": result}
+        return {"success": True, "result": make_json_serializable(result)}
     except Exception as exc:
         raise HTTPException(status_code=500, detail=str(exc)) from exc
 
@@ -50,7 +53,7 @@ async def federated_train(payload: FederatedTrainRequest):
             num_rounds=payload.num_rounds,
             distribution_type=payload.distribution_type,
         )
-        return {"success": True, "result": result}
+        return {"success": True, "result": make_json_serializable(result)}
     except Exception as exc:
         raise HTTPException(status_code=500, detail=str(exc)) from exc
 
@@ -62,6 +65,6 @@ async def causal_discovery(payload: CausalDiscoveryRequest):
 
         engine = CausalInferenceEngine(save_dir="./artifacts/results/causal_results")
         result = engine.discover_causal_relationships(payload.category, max_lags=payload.max_lags)
-        return {"success": True, "result": result}
+        return {"success": True, "result": make_json_serializable(result)}
     except Exception as exc:
         raise HTTPException(status_code=500, detail=str(exc)) from exc

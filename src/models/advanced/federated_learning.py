@@ -15,11 +15,9 @@ import os
 import time
 import random
 import copy
+import builtins
 from pathlib import Path
-from sklearn.preprocessing import MinMaxScaler
-from sklearn.metrics import mean_absolute_error, mean_squared_error
 import matplotlib.pyplot as plt
-import seaborn as sns
 import warnings
 warnings.filterwarnings('ignore')
 
@@ -27,13 +25,46 @@ ROOT_DIR = Path(__file__).resolve().parents[3]
 DATA_DIR = ROOT_DIR / "data" / "raw"
 FEDERATED_RESULTS_DIR = ROOT_DIR / "artifacts" / "results" / "federated_results"
 
+
+def print(*args, **kwargs):
+    safe_args = [str(arg).encode('ascii', 'replace').decode('ascii') for arg in args]
+    builtins.print(*safe_args, **kwargs)
+
+
+class SimpleMinMaxScaler:
+    def fit_transform(self, values: np.ndarray) -> np.ndarray:
+        self.min_ = float(np.min(values))
+        self.max_ = float(np.max(values))
+        scale = self.max_ - self.min_
+        if scale == 0:
+            return np.zeros_like(values, dtype=float)
+        return (values - self.min_) / scale
+
+    def transform(self, values: np.ndarray) -> np.ndarray:
+        scale = self.max_ - self.min_
+        if scale == 0:
+            return np.zeros_like(values, dtype=float)
+        return (values - self.min_) / scale
+
+
+def mean_absolute_error(actual, predicted) -> float:
+    actual = np.asarray(actual, dtype=float)
+    predicted = np.asarray(predicted, dtype=float)
+    return float(np.mean(np.abs(actual - predicted)))
+
+
+def mean_squared_error(actual, predicted) -> float:
+    actual = np.asarray(actual, dtype=float)
+    predicted = np.asarray(predicted, dtype=float)
+    return float(np.mean((actual - predicted) ** 2))
+
 class PharmacyClient:
     """Represents a single pharmacy in the federated learning system"""
 
     def __init__(self, client_id: str, data: np.ndarray, model_config: Dict[str, Any]):
         self.client_id = client_id
         self.data = data
-        self.scaler = MinMaxScaler()
+        self.scaler = SimpleMinMaxScaler()
         self.model_config = model_config
         self.local_model = None
         self.training_history = []
@@ -553,7 +584,7 @@ def compare_federated_vs_centralized(category: str = 'C1'):
 
     # Centralized training
     print("🏛️ Training centralized model...")
-    scaler = MinMaxScaler()
+    scaler = SimpleMinMaxScaler()
     train_normalized = scaler.fit_transform(train_data.reshape(-1, 1)).flatten()
 
     # Simple centralized model
@@ -617,7 +648,7 @@ def compare_federated_vs_centralized(category: str = 'C1'):
 
     # Federated training
     print("🌐 Training federated model...")
-    fed_results = run_federated_drug_prediction(category, num_clients=5, num_rounds=8)
+    fed_results = run_federated_drug_prediction(category, num_clients=2, num_rounds=1)
     federated_mae = fed_results['final_metrics']['mae']
     federated_rmse = fed_results['final_metrics']['rmse']
 

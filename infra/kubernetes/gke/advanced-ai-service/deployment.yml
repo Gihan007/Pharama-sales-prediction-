@@ -1,0 +1,54 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: advanced-ai-service
+  namespace: drug-sales
+  labels:
+    app: advanced-ai-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: advanced-ai-service
+  template:
+    metadata:
+      labels:
+        app: advanced-ai-service
+    spec:
+      containers:
+        - name: advanced-ai-service
+          image: REGION-docker.pkg.dev/PROJECT_ID/REPOSITORY/drug-sales-platform:latest
+          imagePullPolicy: IfNotPresent
+          command: ["uvicorn"]
+          args:
+            - "services.advanced_ai_service.app.main:app"
+            - "--host"
+            - "0.0.0.0"
+            - "--port"
+            - "5003"
+          envFrom:
+            - configMapRef:
+                name: drug-sales-config
+            - secretRef:
+                name: drug-sales-secrets
+          ports:
+            - containerPort: 5003
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 5003
+            initialDelaySeconds: 15
+            periodSeconds: 10
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 5003
+            initialDelaySeconds: 45
+            periodSeconds: 20
+          resources:
+            requests:
+              cpu: "1"
+              memory: "2Gi"
+            limits:
+              cpu: "4"
+              memory: "8Gi"

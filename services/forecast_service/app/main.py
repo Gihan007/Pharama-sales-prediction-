@@ -1,10 +1,12 @@
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel, ConfigDict
 
+from libs.common.metrics import install_metrics
 from services.forecast_service.app.forecasting import forecast_sales
 
 
 app = FastAPI(title="Forecast Service")
+install_metrics(app, "forecast-service")
 
 
 class ForecastRequest(BaseModel):

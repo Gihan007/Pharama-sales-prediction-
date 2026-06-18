@@ -1,95 +1,137 @@
+x-app-build: &app-build
+  context: ../..
+  dockerfile: infra/docker/Dockerfile
+  target: production
+
+x-app-env: &app-env
+  PYTHONPATH: /app
+  PYTHONUNBUFFERED: "1"
+  REDIS_URL: redis://redis:6379/0
+  DATABASE_URL: postgresql://prediction_user:secure_password_2024@postgres:5432/drug_prediction
+  API_GATEWAY_URL: http://api-gateway:5000
+  FORECAST_SERVICE_URL: http://forecast-service:5001
+  TRAINING_SERVICE_URL: http://training-service:5002
+  ADVANCED_AI_SERVICE_URL: http://advanced-ai-service:5003
+  EXPLAINABILITY_SERVICE_URL: http://explainability-service:5004
+
+x-healthcheck-defaults: &healthcheck-defaults
+  interval: 30s
+  timeout: 10s
+  retries: 5
+  start_period: 30s
+
 services:
   web-ui:
-    build:
-      context: ../..
-      dockerfile: infra/docker/Dockerfile
-      target: production
+    build: *app-build
     command: uvicorn services.frontend_service.app.main:app --host 0.0.0.0 --port 3001
     ports:
       - "3001:3001"
     environment:
-      - API_GATEWAY_URL=http://api-gateway:5000
+      <<: *app-env
     volumes:
       - ../../services/frontend_service/app/static/images:/app/services/frontend_service/app/static/images:rw
     depends_on:
-      - api-gateway
+      api-gateway:
+        condition: service_healthy
+    healthcheck:
+      <<: *healthcheck-defaults
+      test: ["CMD-SHELL", "python -c \"import urllib.request; urllib.request.urlopen('http://127.0.0.1:3001/health', timeout=5).read()\""]
     restart: unless-stopped
 
   api-gateway:
-    build:
-      context: ../..
-      dockerfile: infra/docker/Dockerfile
-      target: production
+    build: *app-build
     command: uvicorn apps.api_gateway.main:app --host 0.0.0.0 --port 5000
     ports:
       - "5000:5000"
+    environment:
+      <<: *app-env
     volumes:
       - ../../data:/app/data:ro
       - ../../artifacts:/app/artifacts:rw
       - ../../services/frontend_service/app/static/images:/app/services/frontend_service/app/static/images:rw
     depends_on:
-      - redis
-      - forecast-service
-      - explainability-service
+      redis:
+        condition: service_healthy
+      forecast-service:
+        condition: service_healthy
+      training-service:
+        condition: service_healthy
+      advanced-ai-service:
+        condition: service_healthy
+      explainability-service:
+        condition: service_healthy
+    healthcheck:
+      <<: *healthcheck-defaults
+      test: ["CMD-SHELL", "python -c \"import urllib.request; urllib.request.urlopen('http://127.0.0.1:5000/health', timeout=5).read()\""]
     restart: unless-stopped
 
   forecast-service:
-    build:
-      context: ../..
-      dockerfile: infra/docker/Dockerfile
-      target: production
+    build: *app-build
     command: uvicorn services.forecast_service.app.main:app --host 0.0.0.0 --port 5001
     ports:
       - "5001:5001"
+    environment:
+      <<: *app-env
     volumes:
       - ../../data:/app/data:ro
       - ../../artifacts/models:/app/artifacts/models:ro
       - ../../services/frontend_service/app/static/images:/app/services/frontend_service/app/static/images:rw
+    healthcheck:
+      <<: *healthcheck-defaults
+      test: ["CMD-SHELL", "python -c \"import urllib.request; urllib.request.urlopen('http://127.0.0.1:5001/health', timeout=5).read()\""]
     restart: unless-stopped
 
   training-service:
-    build:
-      context: ../..
-      dockerfile: infra/docker/Dockerfile
-      target: production
+    build: *app-build
     command: uvicorn services.training_service.app.main:app --host 0.0.0.0 --port 5002
     ports:
       - "5002:5002"
+    environment:
+      <<: *app-env
     volumes:
       - ../../data:/app/data:ro
       - ../../artifacts/models:/app/artifacts/models:rw
       - ../../artifacts/results:/app/artifacts/results:rw
     depends_on:
-      - redis
+      redis:
+        condition: service_healthy
+    healthcheck:
+      <<: *healthcheck-defaults
+      test: ["CMD-SHELL", "python -c \"import urllib.request; urllib.request.urlopen('http://127.0.0.1:5002/health', timeout=5).read()\""]
     restart: unless-stopped
 
   advanced-ai-service:
-    build:
-      context: ../..
-      dockerfile: infra/docker/Dockerfile
-      target: production
+    build: *app-build
     command: uvicorn services.advanced_ai_service.app.main:app --host 0.0.0.0 --port 5003
     ports:
       - "5003:5003"
+    environment:
+      <<: *app-env
     volumes:
       - ../../data:/app/data:ro
       - ../../artifacts:/app/artifacts:rw
     depends_on:
-      - redis
+      redis:
+        condition: service_healthy
+    healthcheck:
+      <<: *healthcheck-defaults
+      test: ["CMD-SHELL", "python -c \"import urllib.request; urllib.request.urlopen('http://127.0.0.1:5003/health', timeout=5).read()\""]
     restart: unless-stopped
 
   explainability-service:
-    build:
-      context: ../..
-      dockerfile: infra/docker/Dockerfile
-      target: production
+    build: *app-build
     command: uvicorn services.explainability_service.app.main:app --host 0.0.0.0 --port 5004
     ports:
       - "5004:5004"
+    environment:
+      <<: *app-env
     volumes:
       - ../../data:/app/data:ro
       - ../../artifacts/models:/app/artifacts/models:ro
       - ../../services/frontend_service/app/static/images:/app/services/frontend_service/app/static/images:rw
+    healthcheck:
+      <<: *healthcheck-defaults
+      test: ["CMD-SHELL", "python -c \"import urllib.request; urllib.request.urlopen('http://127.0.0.1:5004/health', timeout=5).read()\""]
     restart: unless-stopped
 
   redis:
@@ -98,8 +140,13 @@ services:
       - "6379:6379"
     volumes:
       - redis_data:/data
-    restart: unless-stopped
     command: redis-server --appendonly yes
+    healthcheck:
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      test: ["CMD", "redis-cli", "ping"]
+    restart: unless-stopped
 
   postgres:
     image: postgres:14-alpine
@@ -111,6 +158,33 @@ services:
       - "5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      test: ["CMD-SHELL", "pg_isready -U prediction_user -d drug_prediction"]
+    restart: unless-stopped
+
+  redis-exporter:
+    image: oliver006/redis_exporter:latest
+    ports:
+      - "9121:9121"
+    environment:
+      REDIS_ADDR: redis://redis:6379
+    depends_on:
+      redis:
+        condition: service_healthy
+    restart: unless-stopped
+
+  postgres-exporter:
+    image: prometheuscommunity/postgres-exporter:latest
+    ports:
+      - "9187:9187"
+    environment:
+      DATA_SOURCE_NAME: postgresql://prediction_user:secure_password_2024@postgres:5432/drug_prediction?sslmode=disable
+    depends_on:
+      postgres:
+        condition: service_healthy
     restart: unless-stopped
 
   nginx:
@@ -122,8 +196,15 @@ services:
       - ./nginx.conf:/etc/nginx/nginx.conf:ro
       - ../../services/frontend_service/app/static:/app/services/frontend_service/app/static:ro
     depends_on:
-      - web-ui
-      - api-gateway
+      web-ui:
+        condition: service_healthy
+      api-gateway:
+        condition: service_healthy
+    healthcheck:
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      test: ["CMD-SHELL", "wget -qO- http://127.0.0.1/health || exit 1"]
     restart: unless-stopped
 
   prometheus:
@@ -137,6 +218,17 @@ services:
       - "--config.file=/etc/prometheus/prometheus.yml"
       - "--storage.tsdb.path=/prometheus"
       - "--web.enable-lifecycle"
+    depends_on:
+      api-gateway:
+        condition: service_healthy
+      web-ui:
+        condition: service_healthy
+      redis-exporter:
+        condition: service_started
+      postgres-exporter:
+        condition: service_started
+      node-exporter:
+        condition: service_started
     restart: unless-stopped
 
   grafana:
@@ -149,6 +241,12 @@ services:
       - grafana_data:/var/lib/grafana
     depends_on:
       - prometheus
+    restart: unless-stopped
+
+  node-exporter:
+    image: prom/node-exporter:latest
+    ports:
+      - "9100:9100"
     restart: unless-stopped
 
 volumes:

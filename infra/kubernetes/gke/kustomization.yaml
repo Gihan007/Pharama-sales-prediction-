@@ -1,0 +1,11 @@
+﻿resources:
+  - shared
+  - frontend-service
+  - api-gateway
+  - forecast-service
+  - training-service
+  - advanced-ai-service
+  - explainability-service
+  - redis
+  - postgres
+

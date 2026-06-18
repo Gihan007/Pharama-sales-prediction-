@@ -5,15 +5,27 @@ import torch.nn as nn
 import torch.optim as optim
 from torch.utils.data import DataLoader, Dataset
 import pandas as pd
-from sklearn.preprocessing import StandardScaler
 import copy
-import higher
 import warnings
 from pathlib import Path
 warnings.filterwarnings('ignore')
 
 ROOT_DIR = Path(__file__).resolve().parents[2]
 DATA_DIR = ROOT_DIR / "data" / "raw"
+
+
+class SimpleStandardScaler:
+    def fit_transform(self, values):
+        values = np.asarray(values, dtype=float)
+        self.mean_ = float(np.mean(values))
+        self.scale_ = float(np.std(values))
+        if self.scale_ == 0:
+            self.scale_ = 1.0
+        return (values - self.mean_) / self.scale_
+
+    def inverse_transform(self, values):
+        values = np.asarray(values, dtype=float)
+        return values * self.scale_ + self.mean_
 
 class TimeSeriesDataset(Dataset):
     """Dataset for meta-learning"""
@@ -154,7 +166,7 @@ class MetaLearningSystem:
         file_path = data_dir / f'{category}.csv'
         data = pd.read_csv(file_path, index_col=0, parse_dates=True)
 
-        scaler = StandardScaler()
+        scaler = SimpleStandardScaler()
         data_scaled = scaler.fit_transform(data.values.reshape(-1, 1)).flatten()
 
         self.task_datasets[category] = {
