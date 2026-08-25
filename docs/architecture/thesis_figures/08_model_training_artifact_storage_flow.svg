@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
+<defs>
+<marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="4" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,8 L11,4 z" fill="#334155"/></marker>
+<filter id="shadow" x="-10%" y="-10%" width="120%" height="130%"><feDropShadow dx="0" dy="8" stdDeviation="8" flood-color="#0f172a" flood-opacity="0.13"/></filter>
+<style>
+.title{font:700 36px Arial,sans-serif;fill:#0f172a}.subtitle{font:400 18px Arial,sans-serif;fill:#475569}
+.h{font:700 20px Arial,sans-serif;fill:#0f172a}.b{font:400 16px Arial,sans-serif;fill:#334155}.s{font:400 14px Arial,sans-serif;fill:#475569}
+.metric{font:700 26px Arial,sans-serif;fill:#0f172a}.tiny{font:400 12px Arial,sans-serif;fill:#64748b}
+.card{filter:url(#shadow)}.arrow{stroke:#334155;stroke-width:3;fill:none;marker-end:url(#arrow)}.dash{stroke:#64748b;stroke-width:2.5;stroke-dasharray:8 7;fill:none;marker-end:url(#arrow)}
+</style>
+</defs>
+<rect width="1600" height="900" fill="#f8fafc"/>
+<text x="800.0" y="58" text-anchor="middle" class="title">Model Training and Artifact Storage Flow</text>
+<text x="800.0" y="90" text-anchor="middle" class="subtitle">Category-wise models and scalers saved for reuse during forecasting</text>
+<rect x="80" y="240" width="250" height="120" rx="16" fill="#dbeafe" stroke="#2563eb" stroke-width="2" class="card"/>
+<text x="205.0" y="276" text-anchor="middle" class="h">Category Data</text>
+<text x="205.0" y="308" text-anchor="middle" class="b">C1.csv to C8.csv from</text>
+<text x="205.0" y="329" text-anchor="middle" class="b">data/raw</text>
+<rect x="430" y="240" width="260" height="120" rx="16" fill="#dcfce7" stroke="#16a34a" stroke-width="2" class="card"/>
+<text x="560.0" y="276" text-anchor="middle" class="h">Training Service</text>
+<text x="560.0" y="308" text-anchor="middle" class="b">train selected model type</text>
+<text x="560.0" y="329" text-anchor="middle" class="b">for selected categories</text>
+<path class="arrow" d="M330 300 L430 300"/>
+<rect x="820" y="145" width="640" height="550" rx="18" fill="#ffffff" stroke="#cbd5e1" stroke-width="2" class="card"/>
+<text x="1140" y="190" text-anchor="middle" class="metric">Artifact folders</text>
+<rect x="890" y="245" width="500" height="48" rx="8" fill="#dbeafe" stroke="#cbd5e1" stroke-width="2" class=""/>
+<text x="915" y="275" text-anchor="start" class="b">models_xgb: C*_xgb.pkl</text>
+<rect x="890" y="305" width="500" height="48" rx="8" fill="#dcfce7" stroke="#cbd5e1" stroke-width="2" class=""/>
+<text x="915" y="335" text-anchor="start" class="b">models_lightgbm: C*_lightgbm.txt + scaler</text>
+<rect x="890" y="365" width="500" height="48" rx="8" fill="#ede9fe" stroke="#cbd5e1" stroke-width="2" class=""/>
+<text x="915" y="395" text-anchor="start" class="b">models_lstm: C*_lstm.pth + scaler</text>
+<rect x="890" y="425" width="500" height="48" rx="8" fill="#fef3c7" stroke="#cbd5e1" stroke-width="2" class=""/>
+<text x="915" y="455" text-anchor="start" class="b">models_gru: C*_gru.pth + scaler</text>
+<rect x="890" y="485" width="500" height="48" rx="8" fill="#ccfbf1" stroke="#cbd5e1" stroke-width="2" class=""/>
+<text x="915" y="515" text-anchor="start" class="b">models_transformer: C*_transformer.pth + scaler</text>
+<rect x="890" y="545" width="500" height="48" rx="8" fill="#fce7f3" stroke="#cbd5e1" stroke-width="2" class=""/>
+<text x="915" y="575" text-anchor="start" class="b">models_prophet: C*_prophet.pkl</text>
+<rect x="890" y="605" width="500" height="48" rx="8" fill="#ffedd5" stroke="#cbd5e1" stroke-width="2" class=""/>
+<text x="915" y="635" text-anchor="start" class="b">models_tft / models_nbeats / models_informer</text>
+<path class="arrow" d="M690 300 L820 300"/>
+<rect x="430" y="500" width="260" height="120" rx="16" fill="#ffedd5" stroke="#ea580c" stroke-width="2" class="card"/>
+<text x="560.0" y="536" text-anchor="middle" class="h">Forecasting Service</text>
+<text x="560.0" y="568" text-anchor="middle" class="b">loads saved model and</text>
+<text x="560.0" y="589" text-anchor="middle" class="b">matching scaler</text>
+<path class="dash" d="M1140 695 C980 760 620 710 560 620"/>
+</svg>

@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
+<defs>
+<marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="4" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,8 L11,4 z" fill="#334155"/></marker>
+<filter id="shadow" x="-10%" y="-10%" width="120%" height="130%"><feDropShadow dx="0" dy="8" stdDeviation="8" flood-color="#0f172a" flood-opacity="0.13"/></filter>
+<style>
+.title{font:700 36px Arial,sans-serif;fill:#0f172a}.subtitle{font:400 18px Arial,sans-serif;fill:#475569}
+.h{font:700 20px Arial,sans-serif;fill:#0f172a}.b{font:400 16px Arial,sans-serif;fill:#334155}.s{font:400 14px Arial,sans-serif;fill:#475569}
+.metric{font:700 26px Arial,sans-serif;fill:#0f172a}.tiny{font:400 12px Arial,sans-serif;fill:#64748b}
+.card{filter:url(#shadow)}.arrow{stroke:#334155;stroke-width:3;fill:none;marker-end:url(#arrow)}.dash{stroke:#64748b;stroke-width:2.5;stroke-dasharray:8 7;fill:none;marker-end:url(#arrow)}
+</style>
+</defs>
+<rect width="1600" height="900" fill="#f8fafc"/>
+<text x="800.0" y="58" text-anchor="middle" class="title">Time-Series Train-Test Splitting Method</text>
+<text x="800.0" y="90" text-anchor="middle" class="subtitle">Chronological evaluation split used for each C1-C8 category</text>
+<rect x="80" y="145" width="1440" height="110" rx="18" fill="#ffffff" stroke="#cbd5e1" stroke-width="2" class="card"/>
+<text x="130" y="188" text-anchor="start" class="h">Dataset: 517 weekly observations per category</text>
+<text x="130" y="220" text-anchor="start" class="b">Full range: 2014-01-12 to 2023-12-03</text>
+<text x="1010" y="188" text-anchor="start" class="h">No random shuffle</text>
+<text x="1010" y="220" text-anchor="start" class="b">Past records predict later records</text>
+<rect x="120" y="365" width="1120" height="95" rx="16" fill="#dbeafe" stroke="#2563eb" stroke-width="3"/>
+<rect x="1240" y="365" width="220" height="95" rx="16" fill="#ffedd5" stroke="#ea580c" stroke-width="3"/>
+<line x1="1240" y1="340" x2="1240" y2="500" stroke="#0f172a" stroke-width="4" stroke-dasharray="10 8"/>
+<text x="680" y="405" text-anchor="middle" class="metric">Training Period</text>
+<text x="680" y="438" text-anchor="middle" class="b">507 records: 2014-01-12 to 2023-09-24</text>
+<text x="1350" y="405" text-anchor="middle" class="metric">Test</text>
+<text x="1350" y="438" text-anchor="middle" class="b">10 weeks</text>
+<text x="120" y="525" text-anchor="middle" class="s">2014-01-12</text>
+<text x="1240" y="525" text-anchor="middle" class="s">2023-10-01</text>
+<text x="1460" y="525" text-anchor="middle" class="s">2023-12-03</text>
+<rect x="190" y="615" width="330" height="110" rx="16" fill="#dcfce7" stroke="#16a34a" stroke-width="2" class="card"/>
+<text x="355.0" y="651" text-anchor="middle" class="h">Evaluation</text>
+<text x="355.0" y="683" text-anchor="middle" class="b">MAE, RMSE, MAPE, inference</text>
+<text x="355.0" y="704" text-anchor="middle" class="b">time</text>
+<rect x="635" y="615" width="330" height="110" rx="16" fill="#ede9fe" stroke="#7c3aed" stroke-width="2" class="card"/>
+<text x="800.0" y="651" text-anchor="middle" class="h">Applied Separately</text>
+<text x="800.0" y="683" text-anchor="middle" class="b">same split logic for C1</text>
+<text x="800.0" y="704" text-anchor="middle" class="b">through C8</text>
+<rect x="1080" y="615" width="330" height="110" rx="16" fill="#fee2e2" stroke="#dc2626" stroke-width="2" class="card"/>
+<text x="1245.0" y="651" text-anchor="middle" class="h">Purpose</text>
+<text x="1245.0" y="683" text-anchor="middle" class="b">avoid future data leakage</text>
+</svg>

@@ -1,0 +1,46 @@
+THESIS REFERENCE LINKS
+Source: CSCI 43018- final unstructiured draft (1) - current state 2_new_RENUMBERED.docx
+
+[1] Smart Vision Transparency: Efficient Ocular Disease Prediction Model Using Explainable Artificial Intelligence
+https://doi.org/10.3390/s24206618
+Publisher page: https://www.mdpi.com/1424-8220/24/20/6618
+
+[2] Deep Learning for Ocular Disease Recognition: An Inner-Class Balance
+https://doi.org/10.1155/2022/5007111
+Full-text record: https://pmc.ncbi.nlm.nih.gov/articles/PMC9071974/
+ResearchGate page: https://www.researchgate.net/publication/360258236_Deep_Learning_for_Ocular_Disease_Recognition_An_Inner-Class_Balance
+WARNING: This article was retracted. Retraction notice: https://doi.org/10.1155/2023/9838475
+
+[3] Detection of Diabetic Eye Disease from Retinal Images Using a Deep Learning-Based CenterNet Model
+https://doi.org/10.3390/s21165283
+Publisher page: https://www.mdpi.com/1424-8220/21/16/5283
+
+[4] Age-Related Retinal Disease Identification Using Image Processing and Deep Learning
+https://www.researchgate.net/publication/382751936_Age-Related_Retinal_Disease_Identification_Using_Image_Processing_and_Deep_Learning
+
+[5] Identification of Diabetic Related Eye Diseases Using Deep Learning
+https://doi.org/10.1109/ICAC60630.2023.10417352
+
+[6] Predicting Medical Drug Sales in a Specific Area for Categorical Drugs Using Time Series Forecasting
+https://doi.org/10.1109/SCSE65633.2025.11031056
+
+[7] MISSING FROM THE THESIS REFERENCE LIST
+No title, authors, or link are provided for reference [7].
+
+[8] Recurrent Neural Networks for Time Series Forecasting: Current Status and Future Directions
+https://doi.org/10.1016/j.ijforecast.2020.06.008
+Preprint: https://arxiv.org/abs/1909.00590
+
+[9] Which Product Description Phrases Affect Sales Forecasting? An Explainable AI Framework by Integrating WaveNet Neural Network Models with Multiple Regression
+https://doi.org/10.1016/j.dss.2023.114065
+Publisher page: https://www.sciencedirect.com/science/article/pii/S0167923623001409
+
+[10] Development of an AI-Driven Model for Drug Sales Prediction Using Enhanced Golden Eagle Optimization and XGBoost Algorithm
+https://doi.org/10.31449/inf.v49i17.7491
+Publisher PDF: https://www.informatica.si/index.php/informatica/article/download/7491/4177
+
+IMPORTANT NOTES
+- The thesis currently contains only nine written reference entries: [1]-[6] and [8]-[10].
+- Reference [7] is missing.
+- Reference [2] has been retracted and should normally be replaced with a reliable source.
+- Reference [9] has been replaced in this link list with a verified explainable-AI sales-forecasting paper. The corresponding bibliography entry and any study-specific wording in the thesis Literature Review should also be updated.

@@ -1,0 +1,104 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
+<defs>
+<marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="4" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,8 L11,4 z" fill="#334155"/></marker>
+<filter id="shadow" x="-10%" y="-10%" width="120%" height="130%"><feDropShadow dx="0" dy="8" stdDeviation="8" flood-color="#0f172a" flood-opacity="0.13"/></filter>
+<style>
+.title{font:700 36px Arial,sans-serif;fill:#0f172a}.subtitle{font:400 18px Arial,sans-serif;fill:#475569}
+.h{font:700 20px Arial,sans-serif;fill:#0f172a}.b{font:400 16px Arial,sans-serif;fill:#334155}.s{font:400 14px Arial,sans-serif;fill:#475569}
+.metric{font:700 26px Arial,sans-serif;fill:#0f172a}.tiny{font:400 12px Arial,sans-serif;fill:#64748b}
+.card{filter:url(#shadow)}.arrow{stroke:#334155;stroke-width:3;fill:none;marker-end:url(#arrow)}.dash{stroke:#64748b;stroke-width:2.5;stroke-dasharray:8 7;fill:none;marker-end:url(#arrow)}
+</style>
+</defs>
+<rect width="1600" height="900" fill="#f8fafc"/>
+<text x="800.0" y="58" text-anchor="middle" class="title">Overall Model Performance Comparison Chart</text>
+<text x="800.0" y="90" text-anchor="middle" class="subtitle">Average MAE, RMSE, MAPE, and inference time across evaluated models</text>
+<rect x="80" y="145" width="1440" height="645" rx="18" fill="#ffffff" stroke="#cbd5e1" stroke-width="2" class="card"/>
+<text x="120" y="185" text-anchor="start" class="metric">MAE</text>
+<rect x="120" y="278.6" width="52" height="136.4" rx="6" fill="#2563eb" opacity="0.82"/>
+<text x="146" y="438" text-anchor="middle" class="tiny">light</text>
+<text x="146" y="268.6451507912626" text-anchor="middle" class="tiny">23.37</text>
+<rect x="212" y="274.8" width="52" height="140.2" rx="6" fill="#2563eb" opacity="0.82"/>
+<text x="238" y="438" text-anchor="middle" class="tiny">lstm</text>
+<text x="238" y="264.7749338311604" text-anchor="middle" class="tiny">24.04</text>
+<rect x="304" y="274.3" width="52" height="140.7" rx="6" fill="#2563eb" opacity="0.82"/>
+<text x="330" y="438" text-anchor="middle" class="tiny">gru</text>
+<text x="330" y="264.342057589919" text-anchor="middle" class="tiny">24.11</text>
+<rect x="396" y="266.4" width="52" height="148.6" rx="6" fill="#2563eb" opacity="0.82"/>
+<text x="422" y="438" text-anchor="middle" class="tiny">xgboo</text>
+<text x="422" y="256.42252258337885" text-anchor="middle" class="tiny">25.47</text>
+<rect x="488" y="246.5" width="52" height="168.5" rx="6" fill="#2563eb" opacity="0.82"/>
+<text x="514" y="438" text-anchor="middle" class="tiny">trans</text>
+<text x="514" y="236.45362654368373" text-anchor="middle" class="tiny">28.89</text>
+<rect x="580" y="237.1" width="52" height="177.9" rx="6" fill="#2563eb" opacity="0.82"/>
+<text x="606" y="438" text-anchor="middle" class="tiny">sarim</text>
+<text x="606" y="227.0971991083327" text-anchor="middle" class="tiny">30.49</text>
+<rect x="672" y="225.0" width="52" height="190.0" rx="6" fill="#2563eb" opacity="0.82"/>
+<text x="698" y="438" text-anchor="middle" class="tiny">proph</text>
+<text x="698" y="215.0" text-anchor="middle" class="tiny">32.57</text>
+<text x="835" y="185" text-anchor="start" class="metric">RMSE</text>
+<rect x="835" y="272.0" width="52" height="143.0" rx="6" fill="#16a34a" opacity="0.82"/>
+<text x="861" y="438" text-anchor="middle" class="tiny">light</text>
+<text x="861" y="261.9647859456195" text-anchor="middle" class="tiny">28.92</text>
+<rect x="927" y="268.7" width="52" height="146.3" rx="6" fill="#16a34a" opacity="0.82"/>
+<text x="953" y="438" text-anchor="middle" class="tiny">lstm</text>
+<text x="953" y="258.66693742384956" text-anchor="middle" class="tiny">29.58</text>
+<rect x="1019" y="267.8" width="52" height="147.2" rx="6" fill="#16a34a" opacity="0.82"/>
+<text x="1045" y="438" text-anchor="middle" class="tiny">gru</text>
+<text x="1045" y="257.8116831724411" text-anchor="middle" class="tiny">29.76</text>
+<rect x="1111" y="266.8" width="52" height="148.2" rx="6" fill="#16a34a" opacity="0.82"/>
+<text x="1137" y="438" text-anchor="middle" class="tiny">xgboo</text>
+<text x="1137" y="256.7506534620471" text-anchor="middle" class="tiny">29.97</text>
+<rect x="1203" y="234.3" width="52" height="180.7" rx="6" fill="#16a34a" opacity="0.82"/>
+<text x="1229" y="438" text-anchor="middle" class="tiny">trans</text>
+<text x="1229" y="224.34250262946878" text-anchor="middle" class="tiny">36.52</text>
+<rect x="1295" y="225.0" width="52" height="190.0" rx="6" fill="#16a34a" opacity="0.82"/>
+<text x="1321" y="438" text-anchor="middle" class="tiny">sarim</text>
+<text x="1321" y="215.0" text-anchor="middle" class="tiny">38.41</text>
+<rect x="1387" y="228.6" width="52" height="186.4" rx="6" fill="#16a34a" opacity="0.82"/>
+<text x="1413" y="438" text-anchor="middle" class="tiny">proph</text>
+<text x="1413" y="218.63322294771265" text-anchor="middle" class="tiny">37.68</text>
+<text x="120" y="480" text-anchor="start" class="metric">MAPE</text>
+<rect x="120" y="550.4" width="52" height="159.6" rx="6" fill="#ea580c" opacity="0.82"/>
+<text x="146" y="733" text-anchor="middle" class="tiny">light</text>
+<text x="146" y="540.444549208495" text-anchor="middle" class="tiny">73.92</text>
+<rect x="212" y="574.7" width="52" height="135.3" rx="6" fill="#ea580c" opacity="0.82"/>
+<text x="238" y="733" text-anchor="middle" class="tiny">lstm</text>
+<text x="238" y="564.6871751762213" text-anchor="middle" class="tiny">62.69</text>
+<rect x="304" y="572.0" width="52" height="138.0" rx="6" fill="#ea580c" opacity="0.82"/>
+<text x="330" y="733" text-anchor="middle" class="tiny">gru</text>
+<text x="330" y="561.9760191301681" text-anchor="middle" class="tiny">63.95</text>
+<rect x="396" y="523.5" width="52" height="186.5" rx="6" fill="#ea580c" opacity="0.82"/>
+<text x="422" y="733" text-anchor="middle" class="tiny">xgboo</text>
+<text x="422" y="513.5082501689793" text-anchor="middle" class="tiny">86.40</text>
+<rect x="488" y="594.2" width="52" height="115.8" rx="6" fill="#ea580c" opacity="0.82"/>
+<text x="514" y="733" text-anchor="middle" class="tiny">trans</text>
+<text x="514" y="584.1610501144515" text-anchor="middle" class="tiny">53.67</text>
+<rect x="580" y="589.0" width="52" height="121.0" rx="6" fill="#ea580c" opacity="0.82"/>
+<text x="606" y="733" text-anchor="middle" class="tiny">sarim</text>
+<text x="606" y="578.9966658525364" text-anchor="middle" class="tiny">56.06</text>
+<rect x="672" y="520.0" width="52" height="190.0" rx="6" fill="#ea580c" opacity="0.82"/>
+<text x="698" y="733" text-anchor="middle" class="tiny">proph</text>
+<text x="698" y="510.0" text-anchor="middle" class="tiny">88.03</text>
+<text x="835" y="480" text-anchor="start" class="metric">Time</text>
+<rect x="835" y="686.6" width="52" height="23.4" rx="6" fill="#7c3aed" opacity="0.82"/>
+<text x="861" y="733" text-anchor="middle" class="tiny">light</text>
+<text x="861" y="676.6120343839542" text-anchor="middle" class="tiny">0.11</text>
+<rect x="927" y="682.6" width="52" height="27.4" rx="6" fill="#7c3aed" opacity="0.82"/>
+<text x="953" y="733" text-anchor="middle" class="tiny">lstm</text>
+<text x="953" y="672.5616045845272" text-anchor="middle" class="tiny">0.13</text>
+<rect x="1019" y="686.8" width="52" height="23.2" rx="6" fill="#7c3aed" opacity="0.82"/>
+<text x="1045" y="733" text-anchor="middle" class="tiny">gru</text>
+<text x="1045" y="676.7644699140401" text-anchor="middle" class="tiny">0.11</text>
+<rect x="1111" y="702.5" width="52" height="7.5" rx="6" fill="#7c3aed" opacity="0.82"/>
+<text x="1137" y="733" text-anchor="middle" class="tiny">xgboo</text>
+<text x="1137" y="692.5306590257879" text-anchor="middle" class="tiny">0.03</text>
+<rect x="1203" y="657.2" width="52" height="52.8" rx="6" fill="#7c3aed" opacity="0.82"/>
+<text x="1229" y="733" text-anchor="middle" class="tiny">trans</text>
+<text x="1229" y="647.1702005730659" text-anchor="middle" class="tiny">0.24</text>
+<rect x="1295" y="677.4" width="52" height="32.6" rx="6" fill="#7c3aed" opacity="0.82"/>
+<text x="1321" y="733" text-anchor="middle" class="tiny">sarim</text>
+<text x="1321" y="667.3787965616045" text-anchor="middle" class="tiny">0.15</text>
+<rect x="1387" y="520.0" width="52" height="190.0" rx="6" fill="#7c3aed" opacity="0.82"/>
+<text x="1413" y="733" text-anchor="middle" class="tiny">proph</text>
+<text x="1413" y="510.0" text-anchor="middle" class="tiny">0.87</text>
+</svg>

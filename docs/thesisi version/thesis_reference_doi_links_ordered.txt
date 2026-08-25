@@ -1,0 +1,23 @@
+[1] https://doi.org/10.3390/s24206618
+
+[2] https://doi.org/10.1155/2022/5007111
+
+[3] https://doi.org/10.3390/s21165283
+
+[4] https://doi.org/10.1109/CCAI61966.2024.10603218
+
+[5] https://doi.org/10.1109/ICAC60630.2023.10417352
+
+[6] https://doi.org/10.1109/SCSE65633.2025.11031056
+
+[7] No DOI assigned.
+Official NeurIPS page: https://proceedings.neurips.cc/paper_files/paper/2017/hash/6449f44a102fde848669bdd9eb6b76fa-Abstract.html
+
+[8] https://doi.org/10.1016/j.ijforecast.2020.06.008
+
+[9] https://doi.org/10.1016/j.dss.2023.114065
+
+[10] https://doi.org/10.31449/inf.v49i17.7491
+
+[11] No DOI assigned.
+Official World Bank page: https://www.worldbank.org/en/country/srilanka/publication/sri-lanka-development-update-2023

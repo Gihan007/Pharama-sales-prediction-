@@ -1,0 +1,10 @@
+INFO:     Started server process [45388]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://0.0.0.0:5000 (Press CTRL+C to quit)
+INFO:src.models.advanced.causal_inference:Causal Inference Engine initialized
+INFO:src.models.advanced.causal_inference:Discovering causal relationships...
+INFO:src.models.advanced.causal_inference:Loaded 505 data points for C1 causal analysis
+WARNING:src.models.advanced.causal_inference:statsmodels not available for Granger causality test
+INFO:src.models.advanced.causal_inference:Results saved to ./causal_results\causal_discovery_C1.json
+INFO:src.models.advanced.causal_inference:Discovered 10 potential causal drivers

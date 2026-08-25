@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
+<defs>
+<marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="4" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,8 L11,4 z" fill="#334155"/></marker>
+<filter id="shadow" x="-10%" y="-10%" width="120%" height="130%"><feDropShadow dx="0" dy="8" stdDeviation="8" flood-color="#0f172a" flood-opacity="0.13"/></filter>
+<style>
+.title{font:700 36px Arial,sans-serif;fill:#0f172a}.subtitle{font:400 18px Arial,sans-serif;fill:#475569}
+.h{font:700 20px Arial,sans-serif;fill:#0f172a}.b{font:400 16px Arial,sans-serif;fill:#334155}.s{font:400 14px Arial,sans-serif;fill:#475569}
+.metric{font:700 26px Arial,sans-serif;fill:#0f172a}.tiny{font:400 12px Arial,sans-serif;fill:#64748b}
+.card{filter:url(#shadow)}.arrow{stroke:#334155;stroke-width:3;fill:none;marker-end:url(#arrow)}.dash{stroke:#64748b;stroke-width:2.5;stroke-dasharray:8 7;fill:none;marker-end:url(#arrow)}
+</style>
+</defs>
+<rect width="1600" height="900" fill="#f8fafc"/>
+<text x="800.0" y="58" text-anchor="middle" class="title">Time-Series Feature Engineering Process</text>
+<text x="800.0" y="90" text-anchor="middle" class="subtitle">Transforming sales series into lag, sequence, and time-aware model inputs</text>
+<rect x="80" y="205" width="245" height="120" rx="16" fill="#dbeafe" stroke="#2563eb" stroke-width="2" class="card"/>
+<text x="202.5" y="241" text-anchor="middle" class="h">Raw Sales Series</text>
+<text x="202.5" y="273" text-anchor="middle" class="b">C1-C8 weekly date and</text>
+<text x="202.5" y="294" text-anchor="middle" class="b">sales values</text>
+<rect x="415" y="205" width="245" height="120" rx="16" fill="#fef3c7" stroke="#d97706" stroke-width="2" class="card"/>
+<text x="537.5" y="241" text-anchor="middle" class="h">Target Setup</text>
+<text x="537.5" y="273" text-anchor="middle" class="b">predict the next sales</text>
+<text x="537.5" y="294" text-anchor="middle" class="b">value</text>
+<rect x="770" y="140" width="285" height="115" rx="16" fill="#fce7f3" stroke="#db2777" stroke-width="2" class="card"/>
+<text x="912.5" y="176" text-anchor="middle" class="h">Lag Features</text>
+<text x="912.5" y="208" text-anchor="middle" class="b">lag_1 to lag_5 for</text>
+<text x="912.5" y="229" text-anchor="middle" class="b">XGBoost, LightGBM, SHAP</text>
+<rect x="770" y="310" width="285" height="115" rx="16" fill="#dcfce7" stroke="#16a34a" stroke-width="2" class="card"/>
+<text x="912.5" y="346" text-anchor="middle" class="h">Sequence Windows</text>
+<text x="912.5" y="378" text-anchor="middle" class="b">10-step or 30-step windows</text>
+<text x="912.5" y="399" text-anchor="middle" class="b">for neural models</text>
+<rect x="770" y="480" width="285" height="115" rx="16" fill="#ede9fe" stroke="#7c3aed" stroke-width="2" class="card"/>
+<text x="912.5" y="516" text-anchor="middle" class="h">Time Features</text>
+<text x="912.5" y="548" text-anchor="middle" class="b">week, month, quarter,</text>
+<text x="912.5" y="569" text-anchor="middle" class="b">year, trend, seasonal</text>
+<text x="912.5" y="590" text-anchor="middle" class="b">flags</text>
+<rect x="1165" y="310" width="285" height="125" rx="16" fill="#ccfbf1" stroke="#0f766e" stroke-width="2" class="card"/>
+<text x="1307.5" y="346" text-anchor="middle" class="h">Model-Ready Inputs</text>
+<text x="1307.5" y="378" text-anchor="middle" class="b">tabular lag matrix, tensor</text>
+<text x="1307.5" y="399" text-anchor="middle" class="b">windows, causal features</text>
+<path class="arrow" d="M325 265 L415 265"/>
+<path class="arrow" d="M660 265 C710 210 730 200 770 198"/>
+<path class="arrow" d="M660 265 L770 368"/>
+<path class="arrow" d="M660 265 C710 430 720 520 770 538"/>
+<path class="arrow" d="M1055 198 C1110 220 1135 305 1165 350"/>
+<path class="arrow" d="M1055 368 L1165 368"/>
+<path class="arrow" d="M1055 538 C1110 510 1135 440 1165 390"/>
+<rect x="305" y="530" width="300" height="115" rx="16" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="2" class="card"/>
+<text x="455.0" y="566" text-anchor="middle" class="h">Scaling When Required</text>
+<text x="455.0" y="598" text-anchor="middle" class="b">MinMaxScaler or</text>
+<text x="455.0" y="619" text-anchor="middle" class="b">StandardScaler before</text>
+<text x="455.0" y="640" text-anchor="middle" class="b">selected ML and DL models</text>
+<path class="dash" d="M455 530 C530 450 660 400 770 368"/>
+</svg>

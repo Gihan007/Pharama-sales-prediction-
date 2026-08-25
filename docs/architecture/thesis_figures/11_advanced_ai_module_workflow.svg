@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
+<defs>
+<marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="4" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,8 L11,4 z" fill="#334155"/></marker>
+<filter id="shadow" x="-10%" y="-10%" width="120%" height="130%"><feDropShadow dx="0" dy="8" stdDeviation="8" flood-color="#0f172a" flood-opacity="0.13"/></filter>
+<style>
+.title{font:700 36px Arial,sans-serif;fill:#0f172a}.subtitle{font:400 18px Arial,sans-serif;fill:#475569}
+.h{font:700 20px Arial,sans-serif;fill:#0f172a}.b{font:400 16px Arial,sans-serif;fill:#334155}.s{font:400 14px Arial,sans-serif;fill:#475569}
+.metric{font:700 26px Arial,sans-serif;fill:#0f172a}.tiny{font:400 12px Arial,sans-serif;fill:#64748b}
+.card{filter:url(#shadow)}.arrow{stroke:#334155;stroke-width:3;fill:none;marker-end:url(#arrow)}.dash{stroke:#64748b;stroke-width:2.5;stroke-dasharray:8 7;fill:none;marker-end:url(#arrow)}
+</style>
+</defs>
+<rect width="1600" height="900" fill="#f8fafc"/>
+<text x="800.0" y="58" text-anchor="middle" class="title">Advanced AI Module Workflow</text>
+<text x="800.0" y="90" text-anchor="middle" class="subtitle">Research-oriented extensions included beyond baseline forecasting</text>
+<circle cx="800" cy="450" r="130" fill="#ffffff" stroke="#cbd5e1" stroke-width="2" class="card"/>
+<text x="800" y="432" text-anchor="middle" class="metric">Advanced AI</text>
+<text x="800" y="466" text-anchor="middle" class="h">Service</text>
+<rect x="130" y="190" width="360" height="150" rx="16" fill="#dbeafe" stroke="#2563eb" stroke-width="2" class="card"/>
+<text x="310.0" y="226" text-anchor="middle" class="h">Meta-Learning</text>
+<text x="310.0" y="258" text-anchor="middle" class="b">transfer patterns across drug</text>
+<text x="310.0" y="279" text-anchor="middle" class="b">categories; few-shot adaptation</text>
+<path class="arrow" d="M310 265 C650 265 800 450 800 450"/>
+<rect x="920" y="190" width="360" height="150" rx="16" fill="#dcfce7" stroke="#16a34a" stroke-width="2" class="card"/>
+<text x="1100.0" y="226" text-anchor="middle" class="h">Neural Architecture Search</text>
+<text x="1100.0" y="258" text-anchor="middle" class="b">search model configurations for</text>
+<text x="1100.0" y="279" text-anchor="middle" class="b">drug prediction</text>
+<path class="arrow" d="M1100 265 C950 265 800 450 800 450"/>
+<rect x="130" y="515" width="360" height="150" rx="16" fill="#ffedd5" stroke="#ea580c" stroke-width="2" class="card"/>
+<text x="310.0" y="551" text-anchor="middle" class="h">Federated Learning</text>
+<text x="310.0" y="583" text-anchor="middle" class="b">simulated clients train without</text>
+<text x="310.0" y="604" text-anchor="middle" class="b">sharing raw sales data</text>
+<path class="arrow" d="M310 590 C650 590 800 450 800 450"/>
+<rect x="920" y="515" width="360" height="150" rx="16" fill="#ede9fe" stroke="#7c3aed" stroke-width="2" class="card"/>
+<text x="1100.0" y="551" text-anchor="middle" class="h">Causal Inference</text>
+<text x="1100.0" y="583" text-anchor="middle" class="b">lag, month, quarter, trend,</text>
+<text x="1100.0" y="604" text-anchor="middle" class="b">seasonal indicators</text>
+<path class="arrow" d="M1100 590 C950 590 800 450 800 450"/>
+</svg>

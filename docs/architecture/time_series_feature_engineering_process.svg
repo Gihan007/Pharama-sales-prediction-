@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="760" viewBox="0 0 1400 760">
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#334155"/>
+    </marker>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="130%">
+      <feDropShadow dx="0" dy="8" stdDeviation="8" flood-color="#0f172a" flood-opacity="0.12"/>
+    </filter>
+    <style>
+      .title { font: 700 36px Arial, sans-serif; fill: #0f172a; }
+      .subtitle { font: 400 18px Arial, sans-serif; fill: #475569; }
+      .boxTitle { font: 700 20px Arial, sans-serif; fill: #0f172a; }
+      .boxText { font: 400 16px Arial, sans-serif; fill: #334155; }
+      .smallText { font: 400 14px Arial, sans-serif; fill: #475569; }
+      .caption { font: 400 15px Arial, sans-serif; fill: #475569; }
+      .box { stroke-width: 2; rx: 12; filter: url(#shadow); }
+      .arrow { stroke: #334155; stroke-width: 3; fill: none; marker-end: url(#arrow); }
+      .dashArrow { stroke: #64748b; stroke-width: 2.5; stroke-dasharray: 8 7; fill: none; marker-end: url(#arrow); }
+    </style>
+  </defs>
+
+  <rect width="1400" height="760" fill="#f8fafc"/>
+
+  <text x="700" y="62" text-anchor="middle" class="title">Time-Series Feature Engineering Process</text>
+  <text x="700" y="94" text-anchor="middle" class="subtitle">Transforming category-wise pharmaceutical sales records into model-ready inputs</text>
+
+  <rect x="70" y="175" width="220" height="130" class="box" fill="#dbeafe" stroke="#3b82f6"/>
+  <text x="180" y="218" text-anchor="middle" class="boxTitle">Raw Sales Series</text>
+  <text x="180" y="252" text-anchor="middle" class="boxText">C1-C8 category data</text>
+  <text x="180" y="278" text-anchor="middle" class="smallText">date + sales value</text>
+
+  <rect x="360" y="175" width="230" height="130" class="box" fill="#ccfbf1" stroke="#14b8a6"/>
+  <text x="475" y="218" text-anchor="middle" class="boxTitle">Chronological Order</text>
+  <text x="475" y="252" text-anchor="middle" class="boxText">Sort by datum</text>
+  <text x="475" y="278" text-anchor="middle" class="smallText">preserve time sequence</text>
+
+  <rect x="660" y="175" width="230" height="130" class="box" fill="#fef3c7" stroke="#f59e0b"/>
+  <text x="775" y="218" text-anchor="middle" class="boxTitle">Prediction Target</text>
+  <text x="775" y="252" text-anchor="middle" class="boxText">Next sales value</text>
+  <text x="775" y="278" text-anchor="middle" class="smallText">future demand output</text>
+
+  <path class="arrow" d="M290 240 H360"/>
+  <path class="arrow" d="M590 240 H660"/>
+
+  <rect x="1000" y="115" width="290" height="110" class="box" fill="#fce7f3" stroke="#ec4899"/>
+  <text x="1145" y="156" text-anchor="middle" class="boxTitle">Lag Features</text>
+  <text x="1145" y="187" text-anchor="middle" class="boxText">lag_1 to lag_5</text>
+  <text x="1145" y="211" text-anchor="middle" class="smallText">for XGBoost and LightGBM</text>
+
+  <rect x="1000" y="295" width="290" height="110" class="box" fill="#dcfce7" stroke="#22c55e"/>
+  <text x="1145" y="336" text-anchor="middle" class="boxTitle">Sequence Windows</text>
+  <text x="1145" y="367" text-anchor="middle" class="boxText">10-step or 30-step input</text>
+  <text x="1145" y="391" text-anchor="middle" class="smallText">for LSTM, GRU, Transformer models</text>
+
+  <rect x="1000" y="475" width="290" height="110" class="box" fill="#ede9fe" stroke="#8b5cf6"/>
+  <text x="1145" y="516" text-anchor="middle" class="boxTitle">Time-Based Features</text>
+  <text x="1145" y="547" text-anchor="middle" class="boxText">week, month, trend</text>
+  <text x="1145" y="571" text-anchor="middle" class="smallText">for causal and temporal analysis</text>
+
+  <path class="arrow" d="M890 240 C940 240 945 170 1000 170"/>
+  <path class="arrow" d="M890 240 C945 240 945 350 1000 350"/>
+  <path class="arrow" d="M820 305 C870 430 930 530 1000 530"/>
+
+  <rect x="108" y="430" width="300" height="125" class="box" fill="#e0f2fe" stroke="#0284c7"/>
+  <text x="258" y="470" text-anchor="middle" class="boxTitle">Scaling When Required</text>
+  <text x="258" y="502" text-anchor="middle" class="boxText">MinMaxScaler / StandardScaler</text>
+  <text x="258" y="528" text-anchor="middle" class="smallText">used before selected ML and DL models</text>
+
+  <rect x="500" y="430" width="300" height="125" class="box" fill="#fee2e2" stroke="#ef4444"/>
+  <text x="650" y="470" text-anchor="middle" class="boxTitle">Remove Invalid Rows</text>
+  <text x="650" y="502" text-anchor="middle" class="boxText">drop shifted missing values</text>
+  <text x="650" y="528" text-anchor="middle" class="smallText">created by lag/window generation</text>
+
+  <path class="dashArrow" d="M775 305 C720 365 610 395 408 462"/>
+  <path class="dashArrow" d="M1000 170 C820 255 720 350 650 430"/>
+  <path class="dashArrow" d="M1000 350 C850 370 755 405 650 430"/>
+
+  <rect x="395" y="635" width="610" height="55" rx="12" fill="#ffffff" stroke="#cbd5e1" stroke-width="2"/>
+  <text x="700" y="669" text-anchor="middle" class="caption">Final output: model-ready time-series features for category-wise drug sales forecasting</text>
+</svg>

@@ -1,0 +1,21 @@
+flowchart LR
+    rawFiles[/"Category CSV files C1-C8"/]
+    readCsv["Read CSV files"]
+    parseDates["Parse datum values"]
+    timeIndex["Set time index"]
+    cleanData["Clean usable records"]
+    targetSales["Select sales target"]
+    preparedData["Prepared time-series dataset"]
+    modelInput["Model training input"]
+
+    rawFiles --> readCsv
+    readCsv --> parseDates
+    parseDates --> timeIndex
+    timeIndex --> cleanData
+    cleanData --> targetSales
+    targetSales --> preparedData
+    preparedData --> modelInput
+
+    style rawFiles fill:#C2E5FF,stroke:#3DADFF
+    style preparedData fill:#CDF4D3,stroke:#66D575
+    style modelInput fill:#FFECBD,stroke:#FFC943

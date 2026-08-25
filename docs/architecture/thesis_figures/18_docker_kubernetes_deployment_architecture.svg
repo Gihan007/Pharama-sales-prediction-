@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
+<defs>
+<marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="4" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,8 L11,4 z" fill="#334155"/></marker>
+<filter id="shadow" x="-10%" y="-10%" width="120%" height="130%"><feDropShadow dx="0" dy="8" stdDeviation="8" flood-color="#0f172a" flood-opacity="0.13"/></filter>
+<style>
+.title{font:700 36px Arial,sans-serif;fill:#0f172a}.subtitle{font:400 18px Arial,sans-serif;fill:#475569}
+.h{font:700 20px Arial,sans-serif;fill:#0f172a}.b{font:400 16px Arial,sans-serif;fill:#334155}.s{font:400 14px Arial,sans-serif;fill:#475569}
+.metric{font:700 26px Arial,sans-serif;fill:#0f172a}.tiny{font:400 12px Arial,sans-serif;fill:#64748b}
+.card{filter:url(#shadow)}.arrow{stroke:#334155;stroke-width:3;fill:none;marker-end:url(#arrow)}.dash{stroke:#64748b;stroke-width:2.5;stroke-dasharray:8 7;fill:none;marker-end:url(#arrow)}
+</style>
+</defs>
+<rect width="1600" height="900" fill="#f8fafc"/>
+<text x="800.0" y="58" text-anchor="middle" class="title">Docker and Kubernetes Deployment Architecture</text>
+<text x="800.0" y="90" text-anchor="middle" class="subtitle">Containerized multi-service deployment and monitoring readiness</text>
+<rect x="90" y="245" width="270" height="130" rx="16" fill="#dbeafe" stroke="#2563eb" stroke-width="2" class="card"/>
+<text x="225.0" y="281" text-anchor="middle" class="h">Source Code</text>
+<text x="225.0" y="313" text-anchor="middle" class="b">FastAPI services, frontend</text>
+<text x="225.0" y="334" text-anchor="middle" class="b">templates, model code</text>
+<rect x="90" y="525" width="270" height="130" rx="16" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="2" class="card"/>
+<text x="225.0" y="561" text-anchor="middle" class="h">Model and Data Files</text>
+<text x="225.0" y="593" text-anchor="middle" class="b">data/raw and</text>
+<text x="225.0" y="614" text-anchor="middle" class="b">artifacts/models</text>
+<rect x="495" y="190" width="300" height="170" rx="16" fill="#dcfce7" stroke="#16a34a" stroke-width="2" class="card"/>
+<text x="645.0" y="226" text-anchor="middle" class="h">Docker Build</text>
+<text x="645.0" y="258" text-anchor="middle" class="b">Dockerfile packages</text>
+<text x="645.0" y="279" text-anchor="middle" class="b">application dependencies</text>
+<text x="645.0" y="300" text-anchor="middle" class="b">and runtime</text>
+<rect x="495" y="465" width="300" height="170" rx="16" fill="#fef3c7" stroke="#d97706" stroke-width="2" class="card"/>
+<text x="645.0" y="501" text-anchor="middle" class="h">Docker Compose</text>
+<text x="645.0" y="533" text-anchor="middle" class="b">runs API gateway,</text>
+<text x="645.0" y="554" text-anchor="middle" class="b">frontend, forecast,</text>
+<text x="645.0" y="575" text-anchor="middle" class="b">training, explainability,</text>
+<text x="645.0" y="596" text-anchor="middle" class="b">advanced AI</text>
+<rect x="930" y="190" width="300" height="170" rx="16" fill="#ede9fe" stroke="#7c3aed" stroke-width="2" class="card"/>
+<text x="1080.0" y="226" text-anchor="middle" class="h">Kubernetes Manifests</text>
+<text x="1080.0" y="258" text-anchor="middle" class="b">deployments, services,</text>
+<text x="1080.0" y="279" text-anchor="middle" class="b">ingress, configmaps,</text>
+<text x="1080.0" y="300" text-anchor="middle" class="b">shared namespace</text>
+<rect x="930" y="465" width="300" height="170" rx="16" fill="#fce7f3" stroke="#db2777" stroke-width="2" class="card"/>
+<text x="1080.0" y="501" text-anchor="middle" class="h">Service Monitoring</text>
+<text x="1080.0" y="533" text-anchor="middle" class="b">health endpoints and</text>
+<text x="1080.0" y="554" text-anchor="middle" class="b">Prometheus metrics</text>
+<rect x="1325" y="330" width="190" height="170" rx="16" fill="#ffedd5" stroke="#ea580c" stroke-width="2" class="card"/>
+<text x="1420.0" y="366" text-anchor="middle" class="h">Ready for Future Cloud Deployment</text>
+<text x="1420.0" y="398" text-anchor="middle" class="b">GKE-style service</text>
+<text x="1420.0" y="419" text-anchor="middle" class="b">structure</text>
+<path class="arrow" d="M360 310 L495 275"/>
+<path class="arrow" d="M360 590 L495 550"/>
+<path class="arrow" d="M795 275 L930 275"/>
+<path class="arrow" d="M795 550 L930 550"/>
+<path class="arrow" d="M1230 275 C1280 290 1300 345 1325 380"/>
+<path class="arrow" d="M1230 550 C1280 530 1300 455 1325 430"/>
+</svg>

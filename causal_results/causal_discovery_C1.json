@@ -1,0 +1,91 @@
+{
+  "causal_drivers": [
+    {
+      "variable": "week",
+      "correlation": 0.22552828351060816,
+      "strength": "weak",
+      "direction": "positive",
+      "lag": 0
+    },
+    {
+      "variable": "trend",
+      "correlation": 0.22552828351060816,
+      "strength": "weak",
+      "direction": "positive",
+      "lag": 0
+    },
+    {
+      "variable": "year",
+      "correlation": 0.22551323548744054,
+      "strength": "weak",
+      "direction": "positive",
+      "lag": 0
+    },
+    {
+      "variable": "sales_lag12",
+      "correlation": 0.21357443362279893,
+      "strength": "weak",
+      "direction": "positive",
+      "lag": 0
+    },
+    {
+      "variable": "sales_lag4",
+      "correlation": 0.12028954032484272,
+      "strength": "weak",
+      "direction": "positive",
+      "lag": -4
+    },
+    {
+      "variable": "sales_lag1",
+      "correlation": 0.07101157687982726,
+      "strength": "weak",
+      "direction": "positive",
+      "lag": -1
+    },
+    {
+      "variable": "is_rainy_season",
+      "correlation": 0.05799786282866283,
+      "strength": "weak",
+      "direction": "positive",
+      "lag": 4
+    },
+    {
+      "variable": "cyclical_sin",
+      "correlation": -0.05710608383046051,
+      "strength": "weak",
+      "direction": "negative",
+      "lag": -5
+    },
+    {
+      "variable": "cyclical_cos",
+      "correlation": -0.048212384637272315,
+      "strength": "weak",
+      "direction": "negative",
+      "lag": 5
+    },
+    {
+      "variable": "is_holiday_season",
+      "correlation": -0.044221643858782765,
+      "strength": "weak",
+      "direction": "negative",
+      "lag": 4
+    }
+  ],
+  "granger_causality": [],
+  "correlation_matrix": {
+    "week": 0.22552828351060816,
+    "month": -0.008365296254257344,
+    "quarter": 0.011836791641704958,
+    "year": 0.22551323548744054,
+    "sales_lag1": 0.07101157687982726,
+    "sales_lag4": 0.12028954032484272,
+    "sales_lag12": 0.21357443362279893,
+    "is_holiday_season": -0.044221643858782765,
+    "is_rainy_season": 0.05799786282866283,
+    "trend": 0.22552828351060816,
+    "cyclical_sin": -0.05710608383046051,
+    "cyclical_cos": -0.048212384637272315
+  },
+  "data_points": 505,
+  "timestamp": "2026-07-12T04:14:56.983892"
+}

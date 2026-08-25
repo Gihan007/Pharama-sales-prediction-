@@ -1,0 +1,120 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="900" viewBox="0 0 1400 900">
+  <defs>
+    <style>
+      .title { font: 700 34px Arial, sans-serif; fill: #102033; }
+      .subtitle { font: 400 18px Arial, sans-serif; fill: #52616f; }
+      .box-title { font: 700 20px Arial, sans-serif; fill: #102033; }
+      .box-text { font: 400 15px Arial, sans-serif; fill: #334155; }
+      .small { font: 400 13px Arial, sans-serif; fill: #475569; }
+      .step { fill: #ffffff; stroke: #1d4ed8; stroke-width: 2.2; rx: 16; }
+      .group { fill: #f8fafc; stroke: #cbd5e1; stroke-width: 2; rx: 20; }
+      .blue { fill: #eff6ff; stroke: #2563eb; }
+      .green { fill: #ecfdf5; stroke: #059669; }
+      .amber { fill: #fffbeb; stroke: #d97706; }
+      .purple { fill: #f5f3ff; stroke: #7c3aed; }
+      .red { fill: #fef2f2; stroke: #dc2626; }
+      .arrow { stroke: #334155; stroke-width: 2.5; fill: none; marker-end: url(#arrowhead); }
+      .dash { stroke-dasharray: 8 7; }
+    </style>
+    <marker id="arrowhead" markerWidth="12" markerHeight="8" refX="11" refY="4" orient="auto">
+      <polygon points="0 0, 12 4, 0 8" fill="#334155"/>
+    </marker>
+  </defs>
+
+  <rect width="1400" height="900" fill="#ffffff"/>
+
+  <text x="700" y="55" text-anchor="middle" class="title">Overall Methodology of the Drug Sales Prediction System</text>
+  <text x="700" y="86" text-anchor="middle" class="subtitle">AI-based pharmaceutical demand forecasting for category-wise drug sales in Sri Lanka</text>
+
+  <!-- Main pipeline -->
+  <rect x="70" y="130" width="240" height="115" class="step blue"/>
+  <text x="190" y="162" text-anchor="middle" class="box-title">1. Data Collection</text>
+  <text x="190" y="194" text-anchor="middle" class="box-text">Historical drug sales records</text>
+  <text x="190" y="216" text-anchor="middle" class="box-text">C1-C8 pharmaceutical categories</text>
+
+  <rect x="390" y="130" width="240" height="115" class="step blue"/>
+  <text x="510" y="162" text-anchor="middle" class="box-title">2. Data Preprocessing</text>
+  <text x="510" y="194" text-anchor="middle" class="box-text">Date parsing, cleaning</text>
+  <text x="510" y="216" text-anchor="middle" class="box-text">category-wise preparation</text>
+
+  <rect x="710" y="130" width="240" height="115" class="step blue"/>
+  <text x="830" y="162" text-anchor="middle" class="box-title">3. Feature Engineering</text>
+  <text x="830" y="194" text-anchor="middle" class="box-text">Lag features, trend</text>
+  <text x="830" y="216" text-anchor="middle" class="box-text">seasonality and scaling</text>
+
+  <rect x="1030" y="130" width="240" height="115" class="step blue"/>
+  <text x="1150" y="162" text-anchor="middle" class="box-title">4. Data Splitting</text>
+  <text x="1150" y="194" text-anchor="middle" class="box-text">Time-series split</text>
+  <text x="1150" y="216" text-anchor="middle" class="box-text">training and testing sets</text>
+
+  <path d="M310 188 L390 188" class="arrow"/>
+  <path d="M630 188 L710 188" class="arrow"/>
+  <path d="M950 188 L1030 188" class="arrow"/>
+
+  <!-- Model training group -->
+  <rect x="70" y="310" width="1260" height="235" class="group"/>
+  <text x="700" y="342" text-anchor="middle" class="box-title">5. Model Development and Training</text>
+
+  <rect x="105" y="375" width="250" height="120" class="step green"/>
+  <text x="230" y="405" text-anchor="middle" class="box-title">Statistical Models</text>
+  <text x="230" y="437" text-anchor="middle" class="box-text">SARIMAX</text>
+  <text x="230" y="459" text-anchor="middle" class="box-text">Prophet</text>
+
+  <rect x="405" y="375" width="250" height="120" class="step green"/>
+  <text x="530" y="405" text-anchor="middle" class="box-title">Machine Learning</text>
+  <text x="530" y="437" text-anchor="middle" class="box-text">XGBoost, LightGBM</text>
+  <text x="530" y="459" text-anchor="middle" class="box-text">Ensemble forecasting</text>
+
+  <rect x="705" y="375" width="250" height="120" class="step green"/>
+  <text x="830" y="405" text-anchor="middle" class="box-title">Deep Learning</text>
+  <text x="830" y="437" text-anchor="middle" class="box-text">LSTM, GRU, Transformer</text>
+  <text x="830" y="459" text-anchor="middle" class="box-text">TFT, N-BEATS, Informer</text>
+
+  <rect x="1005" y="375" width="285" height="120" class="step green"/>
+  <text x="1147" y="405" text-anchor="middle" class="box-title">Advanced AI Modules</text>
+  <text x="1147" y="437" text-anchor="middle" class="box-text">Meta-learning, NAS</text>
+  <text x="1147" y="459" text-anchor="middle" class="box-text">Federated learning, causal inference</text>
+
+  <path d="M1150 245 L1150 310" class="arrow"/>
+
+  <!-- Evaluation and interpretation -->
+  <rect x="115" y="610" width="300" height="125" class="step amber"/>
+  <text x="265" y="642" text-anchor="middle" class="box-title">6. Forecast Generation</text>
+  <text x="265" y="674" text-anchor="middle" class="box-text">User selects category, date</text>
+  <text x="265" y="696" text-anchor="middle" class="box-text">and model type</text>
+
+  <rect x="550" y="610" width="300" height="125" class="step amber"/>
+  <text x="700" y="642" text-anchor="middle" class="box-title">7. Evaluation</text>
+  <text x="700" y="674" text-anchor="middle" class="box-text">MAE, RMSE, MAPE</text>
+  <text x="700" y="696" text-anchor="middle" class="box-text">model comparison</text>
+
+  <rect x="985" y="610" width="300" height="125" class="step amber"/>
+  <text x="1135" y="642" text-anchor="middle" class="box-title">8. Explainability</text>
+  <text x="1135" y="674" text-anchor="middle" class="box-text">SHAP / feature importance</text>
+  <text x="1135" y="696" text-anchor="middle" class="box-text">forecast interpretation</text>
+
+  <path d="M700 545 L700 610" class="arrow"/>
+  <path d="M415 673 L550 673" class="arrow"/>
+  <path d="M850 673 L985 673" class="arrow"/>
+
+  <!-- System output -->
+  <rect x="180" y="790" width="280" height="80" class="step purple"/>
+  <text x="320" y="822" text-anchor="middle" class="box-title">Web Dashboard</text>
+  <text x="320" y="849" text-anchor="middle" class="box-text">Forecast and charts</text>
+
+  <rect x="560" y="790" width="280" height="80" class="step purple"/>
+  <text x="700" y="822" text-anchor="middle" class="box-title">REST API Services</text>
+  <text x="700" y="849" text-anchor="middle" class="box-text">Forecast, training, explainability</text>
+
+  <rect x="940" y="790" width="280" height="80" class="step purple"/>
+  <text x="1080" y="822" text-anchor="middle" class="box-title">Deployment Support</text>
+  <text x="1080" y="849" text-anchor="middle" class="box-text">Docker, Kubernetes, monitoring</text>
+
+  <path d="M265 735 C265 765 320 760 320 790" class="arrow"/>
+  <path d="M700 735 L700 790" class="arrow"/>
+  <path d="M1135 735 C1135 765 1080 760 1080 790" class="arrow"/>
+
+  <!-- Feedback loop -->
+  <path d="M1080 790 C1270 735 1320 420 1270 250" class="arrow dash"/>
+  <text x="1267" y="562" text-anchor="middle" class="small" transform="rotate(-78 1267 562)">continuous testing and model improvement</text>
+</svg>

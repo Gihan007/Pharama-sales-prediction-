@@ -1,0 +1,28 @@
+flowchart LR
+    rawSeries[/"Raw sales series C1-C8"/]
+    chronological["Arrange by datum"]
+    target["Set next sales value as target"]
+    lagFeatures["Create lag features lag_1 to lag_5"]
+    sequenceWindows["Create sequence windows"]
+    timeFeatures["Add time-based features"]
+    scaling["Apply scaling when required"]
+    removeMissing["Drop shifted missing rows"]
+    modelReady["Model-ready feature dataset"]
+
+    rawSeries --> chronological
+    chronological --> target
+    target --> lagFeatures
+    target --> sequenceWindows
+    target --> timeFeatures
+    lagFeatures --> removeMissing
+    sequenceWindows --> removeMissing
+    scaling --> sequenceWindows
+    scaling --> lagFeatures
+    timeFeatures --> modelReady
+    removeMissing --> modelReady
+
+    style rawSeries fill:#DBEAFE,stroke:#3B82F6
+    style lagFeatures fill:#FCE7F3,stroke:#EC4899
+    style sequenceWindows fill:#DCFCE7,stroke:#22C55E
+    style timeFeatures fill:#EDE9FE,stroke:#8B5CF6
+    style modelReady fill:#FEF3C7,stroke:#F59E0B

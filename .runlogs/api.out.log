@@ -1,0 +1,68 @@
+INFO:     127.0.0.1:59713 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62843 - "GET / HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62843 - "GET /favicon.ico HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:55967 - "POST /api/forecast HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55967 - "POST /api/forecast HTTP/1.1" 200 OK
+Error getting sarimax forecast: No module named 'statsmodels'
+INFO:     127.0.0.1:55973 - "POST /api/forecast HTTP/1.1" 200 OK
+Error getting prophet forecast: No module named 'prophet'
+INFO:     127.0.0.1:55973 - "POST /api/forecast HTTP/1.1" 200 OK
+Error in XGBoost SHAP: No module named 'shap'
+INFO:     127.0.0.1:59125 - "POST /api/explainability HTTP/1.1" 200 OK
+Attempting to import MetaLearningSystem...
+MetaLearningSystem imported successfully, initializing...
+MetaLearningSystem initialized successfully
+INFO:     127.0.0.1:60723 - "GET /api/meta-learning/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60723 - "GET /api/advanced/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60723 - "POST /api/causal/discovery HTTP/1.1" 200 OK
+? Starting NAS for C1
+Population size: 4
+Generations: 1
+
+? Evaluating initial population...
+Evaluating architecture 1/4
+Evaluating architecture 2/4
+Evaluating architecture 3/4
+Evaluating architecture 4/4
+
+? Generation 1/1
+Evaluating new population...
+.4f.4f
+? Results saved to ./nas_results/nas_results_C1_1783854913.json
+INFO:     127.0.0.1:64278 - "POST /api/nas/search HTTP/1.1" 200 OK
+? Federated Learning for Drug Sales Prediction - C1
+============================================================
+? Loaded 517 data points for C1
+? Creating iid data distributions for 2 clients...
+? Initialized 2 pharmacy clients
+? Global model initialized
+? Starting Federated Learning Training
+Rounds: 1, Clients: 2, Fraction: 0.8
+============================================================
+
+? Round 1/1
+Selected 1 clients for training
+  ? pharmacy_1: Loss = 0.0268, MAE = 0.1285
+  ? Model updates aggregated
+  ? Round 1 - MAE: 0.1803, RMSE: 0.2211
+
+? Federated training completed!
+   ? Final MAE: 0.1803
+   ? Final RMSE: 0.2211
+? Federated model saved to C:\Users\user\Desktop\Final Reaserch\Reaserch_papaer_Implement_for_Predicting_Drug-sales-data-for-specific-areas-in-the-srilanka-IEEE-\artifacts\results\federated_results\fed_model_C1_iid.pth
+? Training progress plot saved to C:\Users\user\Desktop\Final Reaserch\Reaserch_papaer_Implement_for_Predicting_Drug-sales-data-for-specific-areas-in-the-srilanka-IEEE-\artifacts\results\federated_results\fed_training_C1_iid.png
+
+? Federated Learning Summary:
+  Final MAE: 0.1803
+  Final RMSE: 0.2211
+  Results saved to: C:\Users\user\Desktop\Final Reaserch\Reaserch_papaer_Implement_for_Predicting_Drug-sales-data-for-specific-areas-in-the-srilanka-IEEE-\artifacts\results\federated_results\fed_results_C1_iid_1783854914.json
+  Model saved to: C:\Users\user\Desktop\Final Reaserch\Reaserch_papaer_Implement_for_Predicting_Drug-sales-data-for-specific-areas-in-the-srilanka-IEEE-\artifacts\results\federated_results\fed_model_C1_iid.pth
+  Plot saved to: C:\Users\user\Desktop\Final Reaserch\Reaserch_papaer_Implement_for_Predicting_Drug-sales-data-for-specific-areas-in-the-srilanka-IEEE-\artifacts\results\federated_results\fed_training_C1_iid.png
+INFO:     127.0.0.1:64278 - "POST /api/federated/train HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63579 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63579 - "POST /api/forecast HTTP/1.1" 200 OK
+Error in XGBoost SHAP: No module named 'shap'
+INFO:     127.0.0.1:63579 - "POST /api/explainability HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63579 - "GET /api/meta-learning/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63579 - "GET /api/advanced/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64680 - "POST /api/forecast HTTP/1.1" 200 OK

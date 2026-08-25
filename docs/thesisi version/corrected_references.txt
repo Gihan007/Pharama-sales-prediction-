@@ -1,0 +1,24 @@
+REFERENCES — CORRECTED ORDER
+
+S. Abbas, A. Qaisar, M. S. Farooq, M. Saleem, M. Ahmad, and M. A. Khan, “Smart Vision Transparency: Efficient Ocular Disease Prediction Model Using Explainable Artificial Intelligence,” Sensors, vol. 24, no. 20, Art. no. 6618, 2024, doi: 10.3390/s24206618.
+
+M. S. Khan, N. Tafshir, K. N. Alam, A. R. Dhruba, M. M. Khan, A. A. Albraikan, and F. A. Almalki, “Deep Learning for Ocular Disease Recognition: An Inner-Class Balance,” Computational Intelligence and Neuroscience, vol. 2022, Art. no. 5007111, 2022, doi: 10.1155/2022/5007111. [Retracted: doi: 10.1155/2023/9838475.]
+
+T. Nazir et al., “Detection of Diabetic Eye Disease from Retinal Images Using a Deep Learning-Based CenterNet Model,” Sensors, vol. 21, no. 16, Art. no. 5283, 2021, doi: 10.3390/s21165283.
+
+T. Gamage et al., “Age-Related Retinal Disease Identification Using Image Processing and Deep Learning,” in Proc. 4th Int. Conf. Computing and Artificial Intelligence (CCAI), 2024. [Publication page: https://www.researchgate.net/publication/382751936_Age-Related_Retinal_Disease_Identification_Using_Image_Processing_and_Deep_Learning]
+
+K. H. Wijesinghe et al., “Identification of Diabetic Related Eye Diseases Using Deep Learning,” in Proc. 5th Int. Conf. Advancements in Computing (ICAC), 2023, pp. 786–791, doi: 10.1109/ICAC60630.2023.10417352.
+
+S. B. Ekanayake, G. Lakmal, A. Perera, M. Nasmeen, P. Vimanshani, and M. D. Chandrasena Atampalage, “Predicting Medical Drug Sales in a Specific Area for Categorical Drugs Using Time Series Forecasting,” in Proc. Int. Research Conf. Smart Computing and Systems Engineering (SCSE), Colombo, Sri Lanka, Apr. 2025, pp. 1–6, doi: 10.1109/SCSE65633.2025.11031056.
+
+
+H. Hewamalage, C. Bergmeir, and K. Bandara, “Recurrent Neural Networks for Time Series Forecasting: Current Status and Future Directions,” International Journal of Forecasting, vol. 37, no. 1, pp. 388–427, 2021, doi: 10.1016/j.ijforecast.2020.06.008.
+
+S. Chen, S. Ke, S. Han, S. Gupta, and U. Sivarajah, “Which Product Description Phrases Affect Sales Forecasting? An Explainable AI Framework by Integrating WaveNet Neural Network Models with Multiple Regression,” Decision Support Systems, vol. 176, Art. no. 114065, 2024, doi: 10.1016/j.dss.2023.114065.
+
+Y. Xiong, “Development of an AI-Driven Model for Drug Sales Prediction Using Enhanced Golden Eagle Optimization and XGBoost Algorithm,” Informatica, vol. 49, no. 17, pp. 37–50, 2025, doi: 10.31449/inf.v49i17.7491.
+
+IMPORTANT
+- Reference [7] is intentionally incomplete and must be replaced before final submission.
+- Reference [2] has been retracted; replacing it with a non-retracted source is strongly recommended.

@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
+<defs>
+<marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="4" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,8 L11,4 z" fill="#334155"/></marker>
+<filter id="shadow" x="-10%" y="-10%" width="120%" height="130%"><feDropShadow dx="0" dy="8" stdDeviation="8" flood-color="#0f172a" flood-opacity="0.13"/></filter>
+<style>
+.title{font:700 36px Arial,sans-serif;fill:#0f172a}.subtitle{font:400 18px Arial,sans-serif;fill:#475569}
+.h{font:700 20px Arial,sans-serif;fill:#0f172a}.b{font:400 16px Arial,sans-serif;fill:#334155}.s{font:400 14px Arial,sans-serif;fill:#475569}
+.metric{font:700 26px Arial,sans-serif;fill:#0f172a}.tiny{font:400 12px Arial,sans-serif;fill:#64748b}
+.card{filter:url(#shadow)}.arrow{stroke:#334155;stroke-width:3;fill:none;marker-end:url(#arrow)}.dash{stroke:#64748b;stroke-width:2.5;stroke-dasharray:8 7;fill:none;marker-end:url(#arrow)}
+</style>
+</defs>
+<rect width="1600" height="900" fill="#f8fafc"/>
+<text x="800.0" y="58" text-anchor="middle" class="title">Forecasting Request-Response Flow</text>
+<text x="800.0" y="90" text-anchor="middle" class="subtitle">How a selected category, date, and model becomes a returned forecast</text>
+<text x="170" y="140" text-anchor="middle" class="h">User</text>
+<line x1="170" y1="160" x2="170" y2="750" stroke="#cbd5e1" stroke-width="2"/>
+<text x="390" y="140" text-anchor="middle" class="h">Frontend</text>
+<line x1="390" y1="160" x2="390" y2="750" stroke="#cbd5e1" stroke-width="2"/>
+<text x="620" y="140" text-anchor="middle" class="h">API Gateway</text>
+<line x1="620" y1="160" x2="620" y2="750" stroke="#cbd5e1" stroke-width="2"/>
+<text x="870" y="140" text-anchor="middle" class="h">Forecast Service</text>
+<line x1="870" y1="160" x2="870" y2="750" stroke="#cbd5e1" stroke-width="2"/>
+<text x="1120" y="140" text-anchor="middle" class="h">Model/Data Store</text>
+<line x1="1120" y1="160" x2="1120" y2="750" stroke="#cbd5e1" stroke-width="2"/>
+<text x="1370" y="140" text-anchor="middle" class="h">Frontend Result</text>
+<line x1="1370" y1="160" x2="1370" y2="750" stroke="#cbd5e1" stroke-width="2"/>
+<path class="arrow" d="M205 215 L355 215"/>
+<text x="280.0" y="203" text-anchor="middle" class="s">select category/date/model</text>
+<path class="arrow" d="M425 285 L585 285"/>
+<text x="505.0" y="273" text-anchor="middle" class="s">POST /api/forecast</text>
+<path class="arrow" d="M655 355 L835 355"/>
+<text x="745.0" y="343" text-anchor="middle" class="s">route request</text>
+<path class="arrow" d="M905 425 L1085 425"/>
+<text x="995.0" y="413" text-anchor="middle" class="s">load CSV/model/scaler</text>
+<path class="arrow" d="M1085 495 L905 495"/>
+<text x="995.0" y="483" text-anchor="middle" class="s">return artifacts/data</text>
+<path class="arrow" d="M835 565 L655 565"/>
+<text x="745.0" y="553" text-anchor="middle" class="s">forecast value + plot</text>
+<path class="arrow" d="M585 635 L425 635"/>
+<text x="505.0" y="623" text-anchor="middle" class="s">JSON response</text>
+<path class="arrow" d="M425 705 L1335 705"/>
+<text x="880.0" y="693" text-anchor="middle" class="s">render chart and value</text>
+<rect x="810" y="475" width="120" height="60" rx="8" fill="#dcfce7" stroke="#16a34a" stroke-width="2" class="card"/>
+<text x="870" y="512" text-anchor="middle" class="h">predict</text>
+<rect x="810" y="250" width="120" height="60" rx="8" fill="#fef3c7" stroke="#d97706" stroke-width="2" class="card"/>
+<text x="870" y="286" text-anchor="middle" class="h">validate</text>
+</svg>

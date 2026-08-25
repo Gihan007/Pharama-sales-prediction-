@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
+<defs>
+<marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="4" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,8 L11,4 z" fill="#334155"/></marker>
+<filter id="shadow" x="-10%" y="-10%" width="120%" height="130%"><feDropShadow dx="0" dy="8" stdDeviation="8" flood-color="#0f172a" flood-opacity="0.13"/></filter>
+<style>
+.title{font:700 36px Arial,sans-serif;fill:#0f172a}.subtitle{font:400 18px Arial,sans-serif;fill:#475569}
+.h{font:700 20px Arial,sans-serif;fill:#0f172a}.b{font:400 16px Arial,sans-serif;fill:#334155}.s{font:400 14px Arial,sans-serif;fill:#475569}
+.metric{font:700 26px Arial,sans-serif;fill:#0f172a}.tiny{font:400 12px Arial,sans-serif;fill:#64748b}
+.card{filter:url(#shadow)}.arrow{stroke:#334155;stroke-width:3;fill:none;marker-end:url(#arrow)}.dash{stroke:#64748b;stroke-width:2.5;stroke-dasharray:8 7;fill:none;marker-end:url(#arrow)}
+</style>
+</defs>
+<rect width="1600" height="900" fill="#f8fafc"/>
+<text x="800.0" y="58" text-anchor="middle" class="title">Feature Importance Output for Lag-Based Forecasting</text>
+<text x="800.0" y="90" text-anchor="middle" class="subtitle">Fallback lag contribution view generated from C1 time-series relationships</text>
+<rect x="120" y="150" width="650" height="620" rx="18" fill="#ffffff" stroke="#cbd5e1" stroke-width="2" class="card"/>
+<text x="445" y="195" text-anchor="middle" class="metric">Lag Feature Importance</text>
+<text x="180" y="288" text-anchor="start" class="h">sales_lag_1</text>
+<rect x="335" y="260" width="430" height="42" rx="8" fill="#e2e8f0" stroke="#e2e8f0" stroke-width="2" class=""/>
+<rect x="335" y="260" width="201.3436589020344" height="42" rx="8" fill="#ede9fe" stroke="#7c3aed" stroke-width="2" class=""/>
+<text x="548.3436589020343" y="288" text-anchor="start" class="b">12.7%</text>
+<text x="180" y="370" text-anchor="start" class="h">sales_lag_2</text>
+<rect x="335" y="342" width="430" height="42" rx="8" fill="#e2e8f0" stroke="#e2e8f0" stroke-width="2" class=""/>
+<rect x="335" y="342" width="430.0" height="42" rx="8" fill="#ede9fe" stroke="#7c3aed" stroke-width="2" class=""/>
+<text x="777.0" y="370" text-anchor="start" class="b">27.2%</text>
+<text x="180" y="452" text-anchor="start" class="h">sales_lag_3</text>
+<rect x="335" y="424" width="430" height="42" rx="8" fill="#e2e8f0" stroke="#e2e8f0" stroke-width="2" class=""/>
+<rect x="335" y="424" width="278.073587556048" height="42" rx="8" fill="#ede9fe" stroke="#7c3aed" stroke-width="2" class=""/>
+<text x="625.073587556048" y="452" text-anchor="start" class="b">17.6%</text>
+<text x="180" y="534" text-anchor="start" class="h">sales_lag_4</text>
+<rect x="335" y="506" width="430" height="42" rx="8" fill="#e2e8f0" stroke="#e2e8f0" stroke-width="2" class=""/>
+<rect x="335" y="506" width="327.7194108000375" height="42" rx="8" fill="#ede9fe" stroke="#7c3aed" stroke-width="2" class=""/>
+<text x="674.7194108000375" y="534" text-anchor="start" class="b">20.7%</text>
+<text x="180" y="616" text-anchor="start" class="h">sales_lag_5</text>
+<rect x="335" y="588" width="430" height="42" rx="8" fill="#e2e8f0" stroke="#e2e8f0" stroke-width="2" class=""/>
+<rect x="335" y="588" width="345.7267761842871" height="42" rx="8" fill="#ede9fe" stroke="#7c3aed" stroke-width="2" class=""/>
+<text x="692.726776184287" y="616" text-anchor="start" class="b">21.8%</text>
+<rect x="880" y="195" width="510" height="140" rx="16" fill="#dbeafe" stroke="#2563eb" stroke-width="2" class="card"/>
+<text x="1135.0" y="231" text-anchor="middle" class="h">Interpretation</text>
+<text x="1135.0" y="263" text-anchor="middle" class="b">Recent and previous sales values are used to</text>
+<text x="1135.0" y="284" text-anchor="middle" class="b">explain why the model predicted the next</text>
+<text x="1135.0" y="305" text-anchor="middle" class="b">demand value.</text>
+<rect x="880" y="395" width="510" height="140" rx="16" fill="#fef3c7" stroke="#d97706" stroke-width="2" class="card"/>
+<text x="1135.0" y="431" text-anchor="middle" class="h">Project Behavior</text>
+<text x="1135.0" y="463" text-anchor="middle" class="b">If SHAP is unavailable, the system falls back</text>
+<text x="1135.0" y="484" text-anchor="middle" class="b">to model feature importance or correlation-</text>
+<text x="1135.0" y="505" text-anchor="middle" class="b">based lag contribution.</text>
+<rect x="880" y="595" width="510" height="140" rx="16" fill="#dcfce7" stroke="#16a34a" stroke-width="2" class="card"/>
+<text x="1135.0" y="631" text-anchor="middle" class="h">Decision Support</text>
+<text x="1135.0" y="663" text-anchor="middle" class="b">Pharmacy users can see whether the forecast</text>
+<text x="1135.0" y="684" text-anchor="middle" class="b">depends on recent demand or older repeating</text>
+<text x="1135.0" y="705" text-anchor="middle" class="b">sales behavior.</text>
+</svg>

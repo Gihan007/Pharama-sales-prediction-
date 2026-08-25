@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
+<defs>
+<marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="4" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,8 L11,4 z" fill="#334155"/></marker>
+<filter id="shadow" x="-10%" y="-10%" width="120%" height="130%"><feDropShadow dx="0" dy="8" stdDeviation="8" flood-color="#0f172a" flood-opacity="0.13"/></filter>
+<style>
+.title{font:700 36px Arial,sans-serif;fill:#0f172a}.subtitle{font:400 18px Arial,sans-serif;fill:#475569}
+.h{font:700 20px Arial,sans-serif;fill:#0f172a}.b{font:400 16px Arial,sans-serif;fill:#334155}.s{font:400 14px Arial,sans-serif;fill:#475569}
+.metric{font:700 26px Arial,sans-serif;fill:#0f172a}.tiny{font:400 12px Arial,sans-serif;fill:#64748b}
+.card{filter:url(#shadow)}.arrow{stroke:#334155;stroke-width:3;fill:none;marker-end:url(#arrow)}.dash{stroke:#64748b;stroke-width:2.5;stroke-dasharray:8 7;fill:none;marker-end:url(#arrow)}
+</style>
+</defs>
+<rect width="1600" height="900" fill="#f8fafc"/>
+<text x="800.0" y="58" text-anchor="middle" class="title">Overall System Methodology</text>
+<text x="800.0" y="90" text-anchor="middle" class="subtitle">End-to-end research workflow implemented for drug sales forecasting</text>
+<circle cx="800" cy="470" r="130" fill="#ffffff" stroke="#cbd5e1" stroke-width="2" class="card"/>
+<text x="800" y="458" text-anchor="middle" class="metric">AI Drug Sales</text>
+<text x="800" y="492" text-anchor="middle" class="h">Forecasting Framework</text>
+<rect x="680.0" y="137.0" width="240" height="116" rx="18" fill="#dbeafe" stroke="#2563eb" stroke-width="2" class="card"/>
+<circle cx="708.0" cy="163.0" r="18" fill="#2563eb"/>
+<text x="708.0" y="169.0" text-anchor="middle" style="font:700 15px Arial;fill:white">1</text>
+<text x="808.0" y="168.0" text-anchor="middle" class="h">Data collection</text>
+<text x="800.0" y="197.0" text-anchor="middle" class="s">C1-C8 weekly sales</text>
+<text x="800.0" y="214.0" text-anchor="middle" class="s">records</text>
+<path class="dash" d="M818.0 195.0 C800.0 195.0 800.0 332.0 800.0 332.0"/>
+<rect x="874.4543648263005" y="217.54563517369945" width="240" height="116" rx="18" fill="#ccfbf1" stroke="#0f766e" stroke-width="2" class="card"/>
+<circle cx="902.4543648263005" cy="243.54563517369945" r="18" fill="#0f766e"/>
+<text x="902.4543648263005" y="249.54563517369945" text-anchor="middle" style="font:700 15px Arial;fill:white">2</text>
+<text x="1002.4543648263005" y="248.54563517369945" text-anchor="middle" class="h">Preprocessing</text>
+<text x="994.4543648263005" y="277.54563517369945" text-anchor="middle" class="s">date parsing and clean</text>
+<text x="994.4543648263005" y="294.54563517369945" text-anchor="middle" class="s">time-series format</text>
+<path class="dash" d="M976.4543648263005 275.54563517369945 C946.017550315022 275.54563517369945 946.017550315022 372.41926419625645 897.5807358037436 372.41926419625645"/>
+<rect x="955.0" y="412.0" width="240" height="116" rx="18" fill="#dcfce7" stroke="#16a34a" stroke-width="2" class="card"/>
+<circle cx="983.0" cy="438.0" r="18" fill="#16a34a"/>
+<text x="983.0" y="444.0" text-anchor="middle" style="font:700 15px Arial;fill:white">3</text>
+<text x="1083.0" y="443.0" text-anchor="middle" class="h">Feature engineering</text>
+<text x="1075.0" y="472.0" text-anchor="middle" class="s">lags, windows, temporal</text>
+<text x="1075.0" y="489.0" text-anchor="middle" class="s">features</text>
+<path class="dash" d="M1057.0 470.0 C1006.5 470.0 1006.5 470.0 938.0 470.0"/>
+<rect x="874.4543648263005" y="606.4543648263005" width="240" height="116" rx="18" fill="#fef3c7" stroke="#d97706" stroke-width="2" class="card"/>
+<circle cx="902.4543648263005" cy="632.4543648263005" r="18" fill="#d97706"/>
+<text x="902.4543648263005" y="638.4543648263005" text-anchor="middle" style="font:700 15px Arial;fill:white">4</text>
+<text x="1002.4543648263005" y="637.4543648263005" text-anchor="middle" class="h">Model training</text>
+<text x="994.4543648263005" y="666.4543648263005" text-anchor="middle" class="s">SARIMAX, Prophet,</text>
+<text x="994.4543648263005" y="683.4543648263005" text-anchor="middle" class="s">XGBoost, LightGBM, LSTM,</text>
+<text x="994.4543648263005" y="700.4543648263005" text-anchor="middle" class="s">GRU, Transformer</text>
+<path class="dash" d="M976.4543648263005 664.4543648263005 C946.017550315022 664.4543648263005 946.017550315022 567.5807358037436 897.5807358037436 567.5807358037436"/>
+<rect x="680.0" y="687.0" width="240" height="116" rx="18" fill="#ffedd5" stroke="#ea580c" stroke-width="2" class="card"/>
+<circle cx="708.0" cy="713.0" r="18" fill="#ea580c"/>
+<text x="708.0" y="719.0" text-anchor="middle" style="font:700 15px Arial;fill:white">5</text>
+<text x="808.0" y="718.0" text-anchor="middle" class="h">Forecasting</text>
+<text x="800.0" y="747.0" text-anchor="middle" class="s">future sales prediction</text>
+<text x="800.0" y="764.0" text-anchor="middle" class="s">by category</text>
+<path class="dash" d="M818.0 745.0 C800.0 745.0 800.0 608.0 800.0 608.0"/>
+<rect x="485.54563517369945" y="606.4543648263005" width="240" height="116" rx="18" fill="#fce7f3" stroke="#db2777" stroke-width="2" class="card"/>
+<circle cx="513.5456351736995" cy="632.4543648263005" r="18" fill="#db2777"/>
+<text x="513.5456351736995" y="638.4543648263005" text-anchor="middle" style="font:700 15px Arial;fill:white">6</text>
+<text x="613.5456351736995" y="637.4543648263005" text-anchor="middle" class="h">Explainability</text>
+<text x="605.5456351736995" y="666.4543648263005" text-anchor="middle" class="s">SHAP or fallback lag</text>
+<text x="605.5456351736995" y="683.4543648263005" text-anchor="middle" class="s">importance</text>
+<path class="dash" d="M623.5456351736995 664.4543648263005 C653.982449684978 664.4543648263005 653.982449684978 567.5807358037436 702.4192641962564 567.5807358037436"/>
+<rect x="405.0" y="412.00000000000006" width="240" height="116" rx="18" fill="#ede9fe" stroke="#7c3aed" stroke-width="2" class="card"/>
+<circle cx="433.0" cy="438.00000000000006" r="18" fill="#7c3aed"/>
+<text x="433.0" y="444.00000000000006" text-anchor="middle" style="font:700 15px Arial;fill:white">7</text>
+<text x="533.0" y="443.00000000000006" text-anchor="middle" class="h">Evaluation</text>
+<text x="525.0" y="472.00000000000006" text-anchor="middle" class="s">MAE, RMSE, MAPE,</text>
+<text x="525.0" y="489.00000000000006" text-anchor="middle" class="s">inference time</text>
+<path class="dash" d="M543.0 470.00000000000006 C593.5 470.00000000000006 593.5 470.0 662.0 470.0"/>
+<rect x="485.54563517369934" y="217.54563517369945" width="240" height="116" rx="18" fill="#fee2e2" stroke="#dc2626" stroke-width="2" class="card"/>
+<circle cx="513.5456351736993" cy="243.54563517369945" r="18" fill="#dc2626"/>
+<text x="513.5456351736993" y="249.54563517369945" text-anchor="middle" style="font:700 15px Arial;fill:white">8</text>
+<text x="613.5456351736993" y="248.54563517369945" text-anchor="middle" class="h">Deployment</text>
+<text x="605.5456351736993" y="277.54563517369945" text-anchor="middle" class="s">web UI, APIs, Docker,</text>
+<text x="605.5456351736993" y="294.54563517369945" text-anchor="middle" class="s">Kubernetes</text>
+<path class="dash" d="M623.5456351736993 275.54563517369945 C653.9824496849778 275.54563517369945 653.9824496849778 372.41926419625645 702.4192641962564 372.41926419625645"/>
+</svg>

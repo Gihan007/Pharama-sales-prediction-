@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
+<defs>
+<marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="4" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,8 L11,4 z" fill="#334155"/></marker>
+<filter id="shadow" x="-10%" y="-10%" width="120%" height="130%"><feDropShadow dx="0" dy="8" stdDeviation="8" flood-color="#0f172a" flood-opacity="0.13"/></filter>
+<style>
+.title{font:700 36px Arial,sans-serif;fill:#0f172a}.subtitle{font:400 18px Arial,sans-serif;fill:#475569}
+.h{font:700 20px Arial,sans-serif;fill:#0f172a}.b{font:400 16px Arial,sans-serif;fill:#334155}.s{font:400 14px Arial,sans-serif;fill:#475569}
+.metric{font:700 26px Arial,sans-serif;fill:#0f172a}.tiny{font:400 12px Arial,sans-serif;fill:#64748b}
+.card{filter:url(#shadow)}.arrow{stroke:#334155;stroke-width:3;fill:none;marker-end:url(#arrow)}.dash{stroke:#64748b;stroke-width:2.5;stroke-dasharray:8 7;fill:none;marker-end:url(#arrow)}
+</style>
+</defs>
+<rect width="1600" height="900" fill="#f8fafc"/>
+<text x="800.0" y="58" text-anchor="middle" class="title">Web Application Forecast Page Interface</text>
+<text x="800.0" y="90" text-anchor="middle" class="subtitle">Browser-based workflow for selecting category, model, and prediction date</text>
+<rect x="150" y="145" width="1300" height="650" rx="18" fill="#ffffff" stroke="#cbd5e1" stroke-width="2" class="card"/>
+<rect x="150" y="145" width="1300" height="70" rx="18" fill="#0f172a"/>
+<text x="190" y="188" style="font:700 20px Arial,sans-serif;fill:#ffffff">PharmaPredict AI</text>
+<text x="520" y="188" style="font:400 15px Arial;fill:#e2e8f0">Dashboard</text>
+<text x="665" y="188" style="font:400 15px Arial;fill:#e2e8f0">Forecast</text>
+<text x="810" y="188" style="font:400 15px Arial;fill:#e2e8f0">Explainability</text>
+<text x="955" y="188" style="font:400 15px Arial;fill:#e2e8f0">Advanced</text>
+<text x="1100" y="188" style="font:400 15px Arial;fill:#e2e8f0">Analytics</text>
+<rect x="205" y="260" width="380" height="460" rx="14" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="2" class=""/>
+<text x="245" y="305" text-anchor="start" class="metric">Forecast Inputs</text>
+<text x="245" y="350" text-anchor="start" class="s">Drug category</text>
+<rect x="245" y="366" width="285" height="44" rx="8" fill="#ffffff" stroke="#cbd5e1" stroke-width="2" class=""/>
+<text x="265" y="395" text-anchor="start" class="b">C1 - M01AB</text>
+<text x="245" y="445" text-anchor="start" class="s">Forecast model</text>
+<rect x="245" y="461" width="285" height="44" rx="8" fill="#ffffff" stroke="#cbd5e1" stroke-width="2" class=""/>
+<text x="265" y="490" text-anchor="start" class="b">LightGBM</text>
+<text x="245" y="540" text-anchor="start" class="s">Prediction date</text>
+<rect x="245" y="556" width="285" height="44" rx="8" fill="#ffffff" stroke="#cbd5e1" stroke-width="2" class=""/>
+<text x="265" y="585" text-anchor="start" class="b">2025-01-01</text>
+<rect x="245" y="640" width="285" height="48" rx="10" fill="#2563eb" stroke="#2563eb" stroke-width="2" class=""/>
+<text x="387" y="671" text-anchor="middle" style="font:700 16px Arial;fill:white">Generate Forecast</text>
+<rect x="660" y="260" width="315" height="175" rx="14" fill="#dcfce7" stroke="#16a34a" stroke-width="2" class=""/>
+<text x="700" y="305" text-anchor="start" class="metric">Forecast Result</text>
+<text x="700" y="350" text-anchor="start" class="s">Predicted sales</text>
+<text x="700" y="390" text-anchor="start" class="metric">52.84 units</text>
+<rect x="1030" y="260" width="330" height="460" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="2" class=""/>
+<text x="1070" y="305" text-anchor="start" class="metric">Forecast Chart</text>
+<polyline points="1070,650 1115,610 1160,635 1205,575 1250,600 1295,515 1340,555" fill="none" stroke="#2563eb" stroke-width="4"/>
+<circle cx="1340" cy="555" r="7" fill="#dc2626"/>
+<rect x="660" y="485" width="315" height="235" rx="14" fill="#ede9fe" stroke="#7c3aed" stroke-width="2" class=""/>
+<text x="700" y="530" text-anchor="start" class="metric">Explanation</text>
+<text x="700" y="570" text-anchor="start" class="b">Top lag features explain</text>
+<text x="700" y="594" text-anchor="start" class="b">recent sales influence on the</text>
+<text x="700" y="618" text-anchor="start" class="b">prediction.</text>
+</svg>

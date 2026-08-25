@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
+<defs>
+<marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="4" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,8 L11,4 z" fill="#334155"/></marker>
+<filter id="shadow" x="-10%" y="-10%" width="120%" height="130%"><feDropShadow dx="0" dy="8" stdDeviation="8" flood-color="#0f172a" flood-opacity="0.13"/></filter>
+<style>
+.title{font:700 36px Arial,sans-serif;fill:#0f172a}.subtitle{font:400 18px Arial,sans-serif;fill:#475569}
+.h{font:700 20px Arial,sans-serif;fill:#0f172a}.b{font:400 16px Arial,sans-serif;fill:#334155}.s{font:400 14px Arial,sans-serif;fill:#475569}
+.metric{font:700 26px Arial,sans-serif;fill:#0f172a}.tiny{font:400 12px Arial,sans-serif;fill:#64748b}
+.card{filter:url(#shadow)}.arrow{stroke:#334155;stroke-width:3;fill:none;marker-end:url(#arrow)}.dash{stroke:#64748b;stroke-width:2.5;stroke-dasharray:8 7;fill:none;marker-end:url(#arrow)}
+</style>
+</defs>
+<rect width="1600" height="900" fill="#f8fafc"/>
+<text x="800.0" y="58" text-anchor="middle" class="title">API Gateway Communication Flow</text>
+<text x="800.0" y="90" text-anchor="middle" class="subtitle">Frontend requests routed to backend services through FastAPI endpoints</text>
+<rect x="70" y="365" width="230" height="125" rx="16" fill="#dbeafe" stroke="#2563eb" stroke-width="2" class="card"/>
+<text x="185.0" y="401" text-anchor="middle" class="h">Web Frontend</text>
+<text x="185.0" y="433" text-anchor="middle" class="b">browser UI sends API calls</text>
+<rect x="475" y="365" width="250" height="125" rx="16" fill="#fef3c7" stroke="#d97706" stroke-width="2" class="card"/>
+<text x="600.0" y="401" text-anchor="middle" class="h">API Gateway</text>
+<text x="600.0" y="433" text-anchor="middle" class="b">routes requests and</text>
+<text x="600.0" y="454" text-anchor="middle" class="b">serializes responses</text>
+<path class="arrow" d="M300 427 L475 427"/>
+<rect x="900" y="115" width="350" height="92" rx="16" fill="#dcfce7" stroke="#16a34a" stroke-width="2" class="card"/>
+<text x="1075.0" y="149" text-anchor="middle" class="h">/api/forecast</text>
+<text x="1075.0" y="177" text-anchor="middle" class="b">forecast service</text>
+<path class="arrow" d="M725 427 L900 161"/>
+<rect x="900" y="245" width="350" height="92" rx="16" fill="#fce7f3" stroke="#db2777" stroke-width="2" class="card"/>
+<text x="1075.0" y="279" text-anchor="middle" class="h">/api/explainability</text>
+<text x="1075.0" y="307" text-anchor="middle" class="b">SHAP/fallback output</text>
+<path class="arrow" d="M725 427 L900 291"/>
+<rect x="900" y="375" width="350" height="92" rx="16" fill="#dbeafe" stroke="#2563eb" stroke-width="2" class="card"/>
+<text x="1075.0" y="409" text-anchor="middle" class="h">/api/meta-learning/*</text>
+<text x="1075.0" y="437" text-anchor="middle" class="b">MAML/few-shot/transfer</text>
+<path class="arrow" d="M725 427 L900 421"/>
+<rect x="900" y="505" width="350" height="92" rx="16" fill="#ede9fe" stroke="#7c3aed" stroke-width="2" class="card"/>
+<text x="1075.0" y="539" text-anchor="middle" class="h">/api/nas/search</text>
+<text x="1075.0" y="567" text-anchor="middle" class="b">architecture search</text>
+<path class="arrow" d="M725 427 L900 551"/>
+<rect x="900" y="635" width="350" height="92" rx="16" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="2" class="card"/>
+<text x="1075.0" y="669" text-anchor="middle" class="h">/health and /metrics</text>
+<text x="1075.0" y="697" text-anchor="middle" class="b">service status</text>
+<path class="arrow" d="M725 427 L900 681"/>
+<rect x="1310" y="315" width="210" height="150" rx="16" fill="#ccfbf1" stroke="#0f766e" stroke-width="2" class="card"/>
+<text x="1415.0" y="351" text-anchor="middle" class="h">JSON Response</text>
+<text x="1415.0" y="383" text-anchor="middle" class="b">success, value, plot_url,</text>
+<text x="1415.0" y="404" text-anchor="middle" class="b">results, status</text>
+<path class="arrow" d="M1250 161 L1310 390"/>
+<path class="arrow" d="M1250 291 L1310 390"/>
+<path class="arrow" d="M1250 421 L1310 390"/>
+<path class="arrow" d="M1250 551 L1310 390"/>
+<path class="arrow" d="M1250 681 L1310 390"/>
+</svg>

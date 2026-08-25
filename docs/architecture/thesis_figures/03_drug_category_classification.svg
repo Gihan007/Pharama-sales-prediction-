@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
+<defs>
+<marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="4" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,8 L11,4 z" fill="#334155"/></marker>
+<filter id="shadow" x="-10%" y="-10%" width="120%" height="130%"><feDropShadow dx="0" dy="8" stdDeviation="8" flood-color="#0f172a" flood-opacity="0.13"/></filter>
+<style>
+.title{font:700 36px Arial,sans-serif;fill:#0f172a}.subtitle{font:400 18px Arial,sans-serif;fill:#475569}
+.h{font:700 20px Arial,sans-serif;fill:#0f172a}.b{font:400 16px Arial,sans-serif;fill:#334155}.s{font:400 14px Arial,sans-serif;fill:#475569}
+.metric{font:700 26px Arial,sans-serif;fill:#0f172a}.tiny{font:400 12px Arial,sans-serif;fill:#64748b}
+.card{filter:url(#shadow)}.arrow{stroke:#334155;stroke-width:3;fill:none;marker-end:url(#arrow)}.dash{stroke:#64748b;stroke-width:2.5;stroke-dasharray:8 7;fill:none;marker-end:url(#arrow)}
+</style>
+</defs>
+<rect width="1600" height="900" fill="#f8fafc"/>
+<text x="800.0" y="58" text-anchor="middle" class="title">Drug Category Classification Used in the Study</text>
+<text x="800.0" y="90" text-anchor="middle" class="subtitle">C1-C8 pharmaceutical categories used by the forecasting system</text>
+<rect x="680" y="150" width="240" height="90" rx="24" fill="#ffffff" stroke="#cbd5e1" stroke-width="2" class="card"/>
+<text x="800" y="185" text-anchor="middle" class="metric">Drug Sales</text>
+<text x="800" y="215" text-anchor="middle" class="h">Categories</text>
+<path class="dash" d="M800 240 C800 380 150 380 150 110"/>
+<rect x="15" y="113" width="270" height="144" rx="18" fill="#dbeafe" stroke="#2563eb" stroke-width="2" class="card"/>
+<text x="45" y="150" text-anchor="start" class="metric">C1</text>
+<text x="255" y="150" text-anchor="end" class="h">M01AB</text>
+<text x="150" y="183" text-anchor="middle" class="h">Anti-inflammatory</text>
+<text x="150" y="213" text-anchor="middle" class="s">Diclofenac, Indomethacin</text>
+<path class="dash" d="M800 240 C800 380 465 380 465 110"/>
+<rect x="330" y="113" width="270" height="144" rx="18" fill="#ccfbf1" stroke="#0f766e" stroke-width="2" class="card"/>
+<text x="360" y="150" text-anchor="start" class="metric">C2</text>
+<text x="570" y="150" text-anchor="end" class="h">M01AE</text>
+<text x="465" y="183" text-anchor="middle" class="h">Anti-inflammatory</text>
+<text x="465" y="213" text-anchor="middle" class="s">Ibuprofen, Naproxen</text>
+<path class="dash" d="M800 240 C800 380 985 380 985 110"/>
+<rect x="850" y="113" width="270" height="144" rx="18" fill="#dcfce7" stroke="#16a34a" stroke-width="2" class="card"/>
+<text x="880" y="150" text-anchor="start" class="metric">C3</text>
+<text x="1090" y="150" text-anchor="end" class="h">N02BA</text>
+<text x="985" y="183" text-anchor="middle" class="h">Analgesics</text>
+<text x="985" y="213" text-anchor="middle" class="s">Aspirin</text>
+<path class="dash" d="M800 240 C800 380 1300 380 1300 110"/>
+<rect x="1165" y="113" width="270" height="144" rx="18" fill="#fef3c7" stroke="#d97706" stroke-width="2" class="card"/>
+<text x="1195" y="150" text-anchor="start" class="metric">C4</text>
+<text x="1405" y="150" text-anchor="end" class="h">N02BE</text>
+<text x="1300" y="183" text-anchor="middle" class="h">Analgesics</text>
+<text x="1300" y="213" text-anchor="middle" class="s">Metamizole</text>
+<path class="dash" d="M800 240 C800 380 150 380 150 485"/>
+<rect x="15" y="488" width="270" height="144" rx="18" fill="#ffedd5" stroke="#ea580c" stroke-width="2" class="card"/>
+<text x="45" y="525" text-anchor="start" class="metric">C5</text>
+<text x="255" y="525" text-anchor="end" class="h">N05B</text>
+<text x="150" y="558" text-anchor="middle" class="h">Anxiolytics</text>
+<text x="150" y="588" text-anchor="middle" class="s">Diazepam, Lorazepam</text>
+<path class="dash" d="M800 240 C800 380 465 380 465 485"/>
+<rect x="330" y="488" width="270" height="144" rx="18" fill="#fce7f3" stroke="#db2777" stroke-width="2" class="card"/>
+<text x="360" y="525" text-anchor="start" class="metric">C6</text>
+<text x="570" y="525" text-anchor="end" class="h">N05C</text>
+<text x="465" y="558" text-anchor="middle" class="h">Hypnotics and sedatives</text>
+<text x="465" y="588" text-anchor="middle" class="s">Zolpidem, Zopiclone</text>
+<path class="dash" d="M800 240 C800 380 985 380 985 485"/>
+<rect x="850" y="488" width="270" height="144" rx="18" fill="#ede9fe" stroke="#7c3aed" stroke-width="2" class="card"/>
+<text x="880" y="525" text-anchor="start" class="metric">C7</text>
+<text x="1090" y="525" text-anchor="end" class="h">R03</text>
+<text x="985" y="558" text-anchor="middle" class="h">Obstructive airway drugs</text>
+<text x="985" y="588" text-anchor="middle" class="s">Salbutamol, Beclometasone</text>
+<path class="dash" d="M800 240 C800 380 1300 380 1300 485"/>
+<rect x="1165" y="488" width="270" height="144" rx="18" fill="#fee2e2" stroke="#dc2626" stroke-width="2" class="card"/>
+<text x="1195" y="525" text-anchor="start" class="metric">C8</text>
+<text x="1405" y="525" text-anchor="end" class="h">R06</text>
+<text x="1300" y="558" text-anchor="middle" class="h">Antihistamines</text>
+<text x="1300" y="588" text-anchor="middle" class="s">Cetirizine, Loratadine</text>
+</svg>
